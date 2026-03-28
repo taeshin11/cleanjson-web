@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use & FAQ — CleanJSON JSON Formatter</title>
+  <meta name="description" content="Learn how to format, validate, and beautify JSON with CleanJSON. Step-by-step guide and frequently asked questions about our free online JSON tool." />
+  <meta name="keywords" content="how to format JSON, JSON formatter guide, JSON validator FAQ, format JSON online, beautify JSON tutorial" />
+  <link rel="canonical" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="How to Use & FAQ — CleanJSON" />
+  <meta property="og:description" content="Step-by-step guide and FAQ for CleanJSON, the free online JSON formatter and validator." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cleanjson-web.vercel.app/how-to-use.html" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="How to Use & FAQ — CleanJSON" />
+  <meta name="twitter:description" content="Step-by-step guide and FAQ for CleanJSON, the free online JSON formatter and validator." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- GOOGLE ADSENSE: paste auto-ads script here -->
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="CleanJSON home">
+        <span class="logo-icon" aria-hidden="true">{ }</span>
+        <span class="logo-text">CleanJSON</span>
+      </a>
+      <nav class="header-nav" aria-label="Site navigation">
+        <a href="/" class="btn-small">Home</a>
+        <a href="/about.html" class="btn-small">About</a>
+        <a href="/how-to-use.html" class="btn-small" aria-current="page">Help & FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content page-content" role="main">
+    <article>
+      <h1>How to Use CleanJSON</h1>
+      <p>CleanJSON is designed to be as simple as possible. Follow these three steps to format, validate, or beautify any JSON data instantly.</p>
+
+      <section>
+        <h2>Step 1: Paste Your JSON</h2>
+        <p>Open <a href="/">CleanJSON</a> in your browser. You will see two panels: <strong>Input</strong> on the left and <strong>Output</strong> on the right (on mobile, these appear as tabs). Paste your raw JSON into the Input panel using <kbd>Ctrl+V</kbd> (or <kbd>Cmd+V</kbd> on Mac). You can also:</p>
+        <ul>
+          <li><strong>Drag and drop</strong> a <code>.json</code> file directly onto the input area.</li>
+          <li><strong>Type JSON manually</strong> — the input area supports full text editing with line numbers.</li>
+          <li><strong>Load from a shared URL</strong> — if someone sent you a CleanJSON share link, the JSON loads automatically when you open it.</li>
+        </ul>
+        <p>If the "Auto-format on paste" checkbox is enabled (it is by default), your JSON will be formatted the moment you paste it.</p>
+      </section>
+
+      <section>
+        <h2>Step 2: Format, Validate, or Transform</h2>
+        <p>Use the action buttons below the editor panels to process your JSON:</p>
+        <ul>
+          <li><strong>Format</strong> — beautifies your JSON with proper indentation (2 spaces) and syntax highlighting. Keyboard shortcut: <kbd>Ctrl+Shift+F</kbd>.</li>
+          <li><strong>Validate</strong> — checks whether your JSON is syntactically valid without reformatting it. If there is an error, the exact line number and error description are displayed.</li>
+          <li><strong>Minify</strong> — compresses your JSON by removing all whitespace, producing the smallest possible output.</li>
+          <li><strong>Escape</strong> — converts your input into an escaped JSON string (useful for embedding JSON inside other JSON or code).</li>
+          <li><strong>Unescape</strong> — reverses escaping, converting an escaped string back into readable JSON.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Step 3: Use the Output</h2>
+        <p>Once your JSON is processed, you have several options:</p>
+        <ul>
+          <li><strong>Copy</strong> — click the Copy button in the output panel header to copy the formatted JSON to your clipboard.</li>
+          <li><strong>Download</strong> — save the output as a <code>formatted.json</code> file to your computer.</li>
+          <li><strong>Share</strong> — generates a URL with your JSON encoded in it, so you can share it with colleagues without needing a server.</li>
+          <li><strong>Tree View</strong> — switch to an interactive tree view to explore nested structures. Click any key or value to see its JSON path (e.g., <code>$.users[0].name</code>).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Keyboard Shortcuts</h2>
+        <p>CleanJSON supports keyboard shortcuts for all major actions. Press <kbd>?</kbd> (when not typing in the input area) to see the full list, or use these directly:</p>
+        <table class="shortcuts-table">
+          <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>Ctrl+Shift+F</kbd></td><td>Format JSON</td></tr>
+            <tr><td><kbd>Ctrl+Shift+V</kbd></td><td>Validate JSON</td></tr>
+            <tr><td><kbd>Ctrl+Shift+M</kbd></td><td>Minify JSON</td></tr>
+            <tr><td><kbd>Ctrl+Shift+C</kbd></td><td>Copy output</td></tr>
+            <tr><td><kbd>Ctrl+Shift+X</kbd></td><td>Clear all</td></tr>
+            <tr><td><kbd>Ctrl+Shift+S</kbd></td><td>Share URL</td></tr>
+            <tr><td><kbd>Ctrl+Shift+D</kbd></td><td>Download JSON</td></tr>
+            <tr><td><kbd>?</kbd></td><td>Open shortcuts panel</td></tr>
+          </tbody>
+        </table>
+        <p>On macOS, replace <kbd>Ctrl</kbd> with <kbd>Cmd</kbd>.</p>
+      </section>
+
+      <hr />
+
+      <h1 id="faq">Frequently Asked Questions</h1>
+
+      <section>
+        <h2>Is CleanJSON really free?</h2>
+        <p>Yes, CleanJSON is completely free to use with no limitations. There is no premium tier, no feature gating, no rate limiting, and no sign-up required. The site is supported by non-intrusive display advertising, which allows us to keep the tool free for everyone. You can use CleanJSON as many times as you like, with JSON of any size your browser can handle.</p>
+      </section>
+
+      <section>
+        <h2>Is my JSON data safe? Do you store or transmit it?</h2>
+        <p>Your data is completely safe. CleanJSON runs <strong>100% in your browser</strong> using client-side JavaScript. Your JSON is never sent to any server, never stored in any database, and never transmitted over the network. All parsing, formatting, and validation happens locally in your browser's JavaScript engine. This makes CleanJSON safe to use with production data, API keys, tokens, personal information, or any sensitive content. You can verify this by inspecting the network tab in your browser's developer tools — no outbound requests are made with your JSON data.</p>
+      </section>
+
+      <section>
+        <h2>What is the maximum JSON size CleanJSON can handle?</h2>
+        <p>CleanJSON can handle JSON files of virtually any size that your browser's memory allows. Modern browsers can typically process JSON files up to 50–100 MB without issues. For extremely large files (hundreds of megabytes), you may experience slower formatting times or browser tab memory limits. In those cases, consider using a command-line tool like <code>jq</code> for batch processing, and CleanJSON for inspection and validation of smaller subsets.</p>
+      </section>
+
+      <section>
+        <h2>Why does CleanJSON say my JSON is invalid?</h2>
+        <p>JSON has strict syntax rules. Common reasons for validation errors include:</p>
+        <ul>
+          <li><strong>Trailing commas</strong> — JSON does not allow a comma after the last element in an array or object. For example, <code>{"a": 1,}</code> is invalid.</li>
+          <li><strong>Single quotes</strong> — JSON requires double quotes for strings and keys. <code>{'key': 'value'}</code> is invalid; use <code>{"key": "value"}</code>.</li>
+          <li><strong>Unquoted keys</strong> — unlike JavaScript objects, JSON keys must be quoted: <code>{key: "value"}</code> is invalid.</li>
+          <li><strong>Comments</strong> — JSON does not support comments (<code>// ...</code> or <code>/* ... */</code>). Remove them before formatting.</li>
+          <li><strong>Missing colons or brackets</strong> — ensure every key-value pair uses a colon, and every opening bracket has a matching closing bracket.</li>
+        </ul>
+        <p>CleanJSON will show you the exact line number and column where the error occurs, making it easy to locate and fix the problem.</p>
+      </section>
+
+      <section>
+        <h2>Can I use CleanJSON on my phone or tablet?</h2>
+        <p>Yes. CleanJSON is fully responsive and works on any device with a modern web browser. On mobile devices, the editor switches to a tabbed interface with separate Input and Output tabs for comfortable use on smaller screens. All buttons are sized for touch interaction, and the formatting engine works identically on mobile and desktop.</p>
+      </section>
+
+      <section>
+        <h2>What is the Tree View feature?</h2>
+        <p>Tree View presents your JSON as an interactive, collapsible node tree — similar to what you see in browser developer tools. Each object and array can be expanded or collapsed independently, making it easy to navigate deeply nested structures. When you click on any key or value in the tree, CleanJSON displays its <strong>JSON path</strong> (e.g., <code>$.data.users[0].email</code>), which you can copy with one click. This is especially useful when writing code that needs to access specific fields in a complex JSON structure.</p>
+      </section>
+
+      <section>
+        <h2>How does the Share URL feature work?</h2>
+        <p>When you click "Share," CleanJSON encodes your JSON using Base64 and appends it to the page URL as a hash fragment (e.g., <code>https://cleanjson-web.vercel.app/#json=eyJoZWxsbyI6IndvcmxkIn0=</code>). When someone opens this URL, the JSON is automatically decoded and loaded into the editor. Because the data is stored in the URL hash (not sent to a server), it remains private — only people who have the exact link can see the JSON. Note that very large JSON payloads may produce URLs that exceed browser or platform URL length limits.</p>
+      </section>
+
+      <section>
+        <h2>Does CleanJSON work offline?</h2>
+        <p>The core formatting, validation, and minification features work without an internet connection once the page has been loaded. The only features that require a network connection are font loading (Google Fonts) and ad display. If you need reliable offline access, you can save the page locally using your browser's "Save As" feature or use CleanJSON in a browser that has previously cached the page assets.</p>
+      </section>
+    </article>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-copy">&copy; 2025 CleanJSON. All rights reserved.</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="/about.html">About Us</a>
+          <a href="/how-to-use.html">How to Use & FAQ</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <noscript>
+    <div style="padding:2rem;text-align:center;font-family:sans-serif;">
+      <strong>JavaScript is required</strong> to use CleanJSON. Please enable JavaScript in your browser.
+    </div>
+  </noscript>
+</body>
+</html>

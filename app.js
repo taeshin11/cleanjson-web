@@ -36,6 +36,7 @@ const shortcutsClose  = document.getElementById('shortcutsClose');
 const jsonPathDisplay = document.getElementById('jsonPathDisplay');
 const jsonPathValue   = document.getElementById('jsonPathValue');
 const jsonPathCopy    = document.getElementById('jsonPathCopy');
+const autoPasteToggle = document.getElementById('autoPasteToggle');
 
 // ---- State ----
 let lastValidJSON = null;
@@ -633,7 +634,7 @@ shortcutsModal.addEventListener('click', (e) => {
 // ============================================================
 jsonInput.addEventListener('paste', () => {
   setTimeout(() => {
-    if (jsonInput.value.trim()) formatJSON();
+    if (autoPasteToggle.checked && jsonInput.value.trim()) formatJSON();
   }, 0);
 });
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cleanjson.app/sitemap.xml
+Sitemap: https://cleanjson-web.vercel.app/sitemap.xml

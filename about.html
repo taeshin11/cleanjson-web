@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — CleanJSON | Free Online JSON Formatter</title>
+  <meta name="description" content="Learn about CleanJSON, a free browser-based JSON formatter and validator built for developers. No signup, no data collection, 100% client-side." />
+  <meta name="keywords" content="about CleanJSON, JSON formatter, JSON validator, free developer tool, browser-based JSON tool" />
+  <link rel="canonical" href="https://cleanjson-web.vercel.app/about.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About Us — CleanJSON" />
+  <meta property="og:description" content="Learn about CleanJSON, a free browser-based JSON formatter and validator built for developers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cleanjson-web.vercel.app/about.html" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="About Us — CleanJSON" />
+  <meta name="twitter:description" content="Learn about CleanJSON, a free browser-based JSON formatter and validator built for developers." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- GOOGLE ADSENSE: paste auto-ads script here -->
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="CleanJSON home">
+        <span class="logo-icon" aria-hidden="true">{ }</span>
+        <span class="logo-text">CleanJSON</span>
+      </a>
+      <nav class="header-nav" aria-label="Site navigation">
+        <a href="/" class="btn-small">Home</a>
+        <a href="/about.html" class="btn-small" aria-current="page">About</a>
+        <a href="/how-to-use.html" class="btn-small">Help & FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content page-content" role="main">
+    <article>
+      <h1>About CleanJSON</h1>
+
+      <section>
+        <h2>What is CleanJSON?</h2>
+        <p>CleanJSON is a free, open-source JSON formatter, validator, and beautifier designed for developers, data engineers, QA testers, and anyone who works with JSON data on a daily basis. Whether you are debugging an API response, inspecting a configuration file, or preparing data for documentation, CleanJSON makes it effortless to transform messy, minified, or malformed JSON into clean, readable, and properly indented output.</p>
+        <p>Unlike many online JSON tools that require you to create an account, install software, or send your data to a remote server, CleanJSON operates <strong>entirely in your browser</strong>. Your JSON data never leaves your machine. There is no server, no database, and no tracking of the content you paste. This architecture makes CleanJSON one of the most privacy-respecting JSON tools available on the internet.</p>
+      </section>
+
+      <section>
+        <h2>The Problem We Solve</h2>
+        <p>Developers encounter raw JSON in countless scenarios: API responses in Postman or curl, configuration files in cloud platforms, log output from microservices, webhook payloads, database exports, and more. Raw JSON is often delivered as a single compressed line with no whitespace, making it nearly impossible to read or debug by eye.</p>
+        <p>Existing solutions often fall short in one or more ways:</p>
+        <ul>
+          <li><strong>Desktop applications</strong> require installation, consume system resources, and may not be available on every machine you use.</li>
+          <li><strong>Server-based web tools</strong> upload your data to third-party servers, raising privacy and compliance concerns — especially when working with production data, API keys, or personal information.</li>
+          <li><strong>Browser extensions</strong> work only within the browser's developer tools and cannot handle arbitrary JSON pasted from other sources.</li>
+          <li><strong>Command-line tools</strong> like <code>jq</code> are powerful but require installation and are less accessible to non-terminal users.</li>
+        </ul>
+        <p>CleanJSON fills this gap by providing an instant, zero-install, zero-upload, browser-native JSON formatting experience that works on any device with a modern web browser.</p>
+      </section>
+
+      <section>
+        <h2>Who Is CleanJSON For?</h2>
+        <ul>
+          <li><strong>Backend Developers</strong> — quickly inspect and format API responses, database queries, and configuration files.</li>
+          <li><strong>Frontend Developers</strong> — validate JSON payloads before sending them to APIs or rendering them in UI components.</li>
+          <li><strong>QA Engineers</strong> — verify JSON structure in automated test results and API contract tests.</li>
+          <li><strong>Data Engineers & Analysts</strong> — clean up JSON exports from ETL pipelines, data warehouses, or analytics platforms.</li>
+          <li><strong>DevOps & SREs</strong> — format JSON log entries and infrastructure-as-code configuration files.</li>
+          <li><strong>Students & Educators</strong> — learn JSON syntax with instant visual feedback and clear error messages.</li>
+          <li><strong>Technical Writers</strong> — prepare JSON examples for documentation, tutorials, and blog posts.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Core Technology</h2>
+        <p>CleanJSON is built with vanilla HTML, CSS, and JavaScript — no frameworks, no build steps, no dependencies. This minimalist approach ensures:</p>
+        <ul>
+          <li><strong>Instant load times</strong> — the entire application is under 100 KB, loading in under one second on most connections.</li>
+          <li><strong>Zero server costs</strong> — hosted on a global CDN via Vercel, the site serves static files with no backend processing.</li>
+          <li><strong>Maximum compatibility</strong> — works on every modern browser (Chrome, Firefox, Safari, Edge) on desktop, tablet, and mobile.</li>
+          <li><strong>Complete privacy</strong> — all JSON parsing, formatting, and validation happens in your browser's JavaScript engine using the native <code>JSON.parse()</code> and <code>JSON.stringify()</code> APIs.</li>
+        </ul>
+        <p>The syntax highlighting engine uses a custom regex-based tokenizer that identifies JSON keys, strings, numbers, booleans, and null values, wrapping each in styled <code>&lt;span&gt;</code> elements for color-coded display. The tree view feature builds a DOM-based collapsible tree with click-to-copy JSON path support, making it easy to navigate deeply nested structures.</p>
+      </section>
+
+      <section>
+        <h2>Features at a Glance</h2>
+        <ul>
+          <li>Format, validate, and beautify JSON with one click or keyboard shortcut.</li>
+          <li>Minify JSON by removing all unnecessary whitespace.</li>
+          <li>Escape and unescape JSON strings for embedding in code or configuration.</li>
+          <li>Interactive tree view with collapsible nodes and JSON path finder.</li>
+          <li>Share your JSON via a URL-encoded link — no server needed.</li>
+          <li>Download formatted JSON as a <code>.json</code> file.</li>
+          <li>Dark mode that respects your system preference and persists across sessions.</li>
+          <li>Responsive design: side-by-side panels on desktop, tabbed view on mobile.</li>
+          <li>Drag-and-drop file support for loading JSON files directly.</li>
+          <li>Comprehensive keyboard shortcuts for power users.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Our Commitment</h2>
+        <p>CleanJSON is and will remain <strong>free to use</strong> with no feature gating, no rate limiting, and no mandatory sign-up. We believe developer tools should be accessible to everyone, everywhere. The site is supported by non-intrusive display advertising, which allows us to keep the tool free while covering hosting and maintenance costs.</p>
+        <p>If you find CleanJSON useful, consider sharing it with your colleagues or starring the project on GitHub. Your support helps us reach more developers who could benefit from a fast, private, and reliable JSON formatting tool.</p>
+      </section>
+    </article>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-copy">&copy; 2025 CleanJSON. All rights reserved.</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="/about.html">About Us</a>
+          <a href="/how-to-use.html">How to Use & FAQ</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <noscript>
+    <div style="padding:2rem;text-align:center;font-family:sans-serif;">
+      <strong>JavaScript is required</strong> to use CleanJSON. Please enable JavaScript in your browser.
+    </div>
+  </noscript>
+</body>
+</html>
