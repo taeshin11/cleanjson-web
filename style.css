@@ -242,10 +242,24 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   border-bottom: none;
   display: none;
 }
-/* Show mobile sticky ad only on small screens, only when ad is present */
 @media (max-width: 768px) {
   .ad-banner--bottom:not(:empty) { display: block; }
 }
+
+/* Sidebar ad (desktop) */
+.ad-sidebar {
+  width: 300px;
+  min-height: 250px;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0.5rem;
+}
+.ad-sidebar:empty { display: none; }
 
 /* ---- Main ---- */
 .main-content {
@@ -301,6 +315,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   .tab-switcher { display: flex; }
 }
 
+/* ---- Editor layout (with sidebar ad) ---- */
+.editor-layout {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
 /* ---- Editor area ---- */
 .editor-area {
   display: flex;
@@ -311,6 +332,8 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   box-shadow: 0 2px 8px var(--shadow);
   overflow: hidden;
   min-height: var(--panel-min-h);
+  flex: 1;
+  min-width: 0;
 }
 
 /* ---- Panels ---- */
@@ -330,6 +353,11 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
   min-height: 38px;
+}
+.panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .panel-title {
   font-size: 0.78rem;
@@ -387,11 +415,6 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 .json-textarea.error-state { background: #fff5f5; }
 [data-theme="dark"] .json-textarea.error-state { background: #2a1a1a; }
 
-/* Error line highlight */
-.json-textarea.has-error-line {
-  background: linear-gradient(var(--bg-card), var(--bg-card));
-}
-
 /* ---- Output panel ---- */
 .json-output {
   flex: 1;
@@ -416,6 +439,67 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 .syn-bool   { color: var(--syntax-bool); font-weight: 500; }
 .syn-null   { color: var(--syntax-null); font-style: italic; }
 .syn-punct  { color: var(--text-secondary); }
+
+/* ---- Tree view ---- */
+.tree-view {
+  flex: 1;
+  padding: 10px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.84rem;
+  line-height: 1.8;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  overflow: auto;
+  min-height: calc(var(--panel-min-h) - 38px);
+}
+.tree-node { padding-left: 1.2em; }
+.tree-toggle {
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+  color: var(--text-secondary);
+  transition: transform 0.15s;
+}
+.tree-toggle:hover { color: var(--accent); }
+.tree-toggle.collapsed { transform: rotate(-90deg); }
+.tree-key { color: var(--syntax-key); cursor: pointer; }
+.tree-key:hover { text-decoration: underline; color: var(--accent); }
+.tree-str { color: var(--syntax-string); }
+.tree-num { color: var(--syntax-number); }
+.tree-bool { color: var(--syntax-bool); }
+.tree-null { color: var(--syntax-null); font-style: italic; }
+.tree-bracket { color: var(--text-secondary); }
+.tree-children { }
+.tree-children.hidden { display: none; }
+.tree-count { color: var(--text-secondary); font-size: 0.75rem; opacity: 0.7; }
+
+/* ---- JSON Path display ---- */
+.json-path-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+  margin-bottom: 0.5rem;
+}
+.json-path-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.json-path-value {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* ---- Panel divider ---- */
 .panel-divider { display: none; }
@@ -491,6 +575,52 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 .status-title { font-weight: 600; }
 .status-detail { font-size: 0.82rem; opacity: 0.85; margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
 
+/* ---- Keyboard shortcuts modal ---- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.15s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px var(--shadow-md);
+  width: 90%;
+  max-width: 440px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.modal-header h2 { font-size: 1rem; }
+.modal-header .btn-icon { border: none; font-size: 1.5rem; }
+.modal-body { padding: 1rem 1.25rem; }
+
+.shortcuts-list { list-style: none; }
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+.shortcut-item:last-child { border-bottom: none; }
+.shortcut-item dt { display: flex; gap: 4px; flex-shrink: 0; }
+.shortcut-item dd { color: var(--text-secondary); font-size: 0.88rem; text-align: right; }
+
 /* ---- SEO content ---- */
 .seo-content {
   margin-top: 2.5rem;
@@ -556,6 +686,11 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
    RESPONSIVE
    ============================================================ */
 
+/* Hide sidebar ad on tablet/mobile */
+@media (max-width: 1100px) {
+  .ad-sidebar { display: none !important; }
+}
+
 /* Tablet: stacked */
 @media (max-width: 900px) {
   .editor-area {
@@ -576,11 +711,9 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
     border-radius: var(--radius);
   }
 
-  /* Hide inactive tab panel */
   .panel { display: none; }
   .panel.tab-active { display: flex; }
 
-  /* When no tab system active, show both stacked */
   .panel--input.tab-active,
   .panel--output.tab-active { min-height: 300px; }
 
@@ -595,6 +728,8 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 
   .hero h1 { font-size: 1.3rem; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
+
+  .json-path-display { font-size: 0.75rem; }
 }
 
 /* Very small screens */

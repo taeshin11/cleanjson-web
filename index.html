@@ -88,42 +88,55 @@
     </div>
 
     <!-- Editor area -->
-    <div class="editor-area">
-      <!-- Input panel -->
-      <section class="panel panel--input" id="input-panel" role="tabpanel" aria-labelledby="tab-input">
-        <div class="panel-header">
-          <h2 class="panel-title">Input</h2>
-          <span class="panel-hint">Paste or type JSON here</span>
-        </div>
-        <div class="textarea-wrapper" id="inputWrapper">
-          <div class="line-numbers" id="lineNumbers" aria-hidden="true"></div>
-          <textarea
-            id="jsonInput"
-            class="json-textarea"
-            placeholder='{\n  "paste": "your JSON here"\n}'
-            spellcheck="false"
-            autocomplete="off"
-            autocorrect="off"
-            autocapitalize="off"
-            aria-label="JSON input"
-            aria-describedby="errorDisplay"
-          ></textarea>
-        </div>
-      </section>
+    <div class="editor-layout">
+      <div class="editor-area">
+        <!-- Input panel -->
+        <section class="panel panel--input" id="input-panel" role="tabpanel" aria-labelledby="tab-input">
+          <div class="panel-header">
+            <h2 class="panel-title">Input</h2>
+            <span class="panel-hint">Paste or type JSON here</span>
+          </div>
+          <div class="textarea-wrapper" id="inputWrapper">
+            <div class="line-numbers" id="lineNumbers" aria-hidden="true"></div>
+            <textarea
+              id="jsonInput"
+              class="json-textarea"
+              placeholder='{\n  "paste": "your JSON here"\n}'
+              spellcheck="false"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              aria-label="JSON input"
+              aria-describedby="errorDisplay"
+            ></textarea>
+          </div>
+        </section>
 
-      <!-- Divider -->
-      <div class="panel-divider" aria-hidden="true"></div>
+        <!-- Divider -->
+        <div class="panel-divider" aria-hidden="true"></div>
 
-      <!-- Output panel -->
-      <section class="panel panel--output" id="output-panel" role="tabpanel" aria-labelledby="tab-output">
-        <div class="panel-header">
-          <h2 class="panel-title">Output</h2>
-          <button id="copyBtn" class="btn-small" aria-label="Copy formatted JSON" title="Copy to clipboard" disabled>
-            <span class="copy-icon" aria-hidden="true">📋</span> Copy
-          </button>
-        </div>
-        <pre id="jsonOutput" class="json-output" aria-live="polite" aria-label="Formatted JSON output"><code id="jsonOutputCode"></code></pre>
-      </section>
+        <!-- Output panel -->
+        <section class="panel panel--output" id="output-panel" role="tabpanel" aria-labelledby="tab-output">
+          <div class="panel-header">
+            <h2 class="panel-title">Output</h2>
+            <div class="panel-header-actions">
+              <button id="treeToggleBtn" class="btn-small" aria-label="Toggle tree view" title="Tree view" disabled>
+                🌲 Tree
+              </button>
+              <button id="copyBtn" class="btn-small" aria-label="Copy formatted JSON" title="Copy to clipboard" disabled>
+                <span class="copy-icon" aria-hidden="true">📋</span> Copy
+              </button>
+            </div>
+          </div>
+          <pre id="jsonOutput" class="json-output" aria-live="polite" aria-label="Formatted JSON output"><code id="jsonOutputCode"></code></pre>
+          <div id="treeView" class="tree-view" aria-label="JSON tree view" style="display:none"></div>
+        </section>
+      </div>
+
+      <!-- Sidebar ad (desktop only) -->
+      <aside id="adsterra-sidebar" class="ad-sidebar" aria-hidden="true">
+        <!-- ADSTERRA: paste 300x250 sidebar ad code here -->
+      </aside>
     </div>
 
     <!-- Action bar -->
@@ -137,17 +150,39 @@
       <button id="minifyBtn" class="btn btn--secondary" aria-label="Minify JSON">
         Minify
       </button>
+      <button id="escapeBtn" class="btn btn--secondary" aria-label="Escape JSON to string">
+        Escape
+      </button>
+      <button id="unescapeBtn" class="btn btn--secondary" aria-label="Unescape string to JSON">
+        Unescape
+      </button>
+      <button id="downloadBtn" class="btn btn--secondary" aria-label="Download JSON file" disabled>
+        Download
+      </button>
+      <button id="shareBtn" class="btn btn--secondary" aria-label="Share JSON via URL" disabled>
+        Share
+      </button>
       <button id="clearBtn" class="btn btn--ghost" aria-label="Clear input">
         Clear
       </button>
+      <button id="shortcutsBtn" class="btn btn--ghost" aria-label="Show keyboard shortcuts" title="Keyboard shortcuts">
+        ⌨️
+      </button>
+    </div>
+
+    <!-- JSON Path display -->
+    <div id="jsonPathDisplay" class="json-path-display" aria-live="polite" style="display:none">
+      <span class="json-path-label">Path:</span>
+      <code id="jsonPathValue" class="json-path-value"></code>
+      <button id="jsonPathCopy" class="btn-small" aria-label="Copy JSON path" title="Copy path">📋</button>
     </div>
 
     <!-- Error / success display -->
     <div id="errorDisplay" class="status-display" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
     <!-- SEO content -->
-    <section class="seo-content">
-      <h2>About CleanJSON</h2>
+    <section class="seo-content" aria-labelledby="about-heading">
+      <h2 id="about-heading">About CleanJSON</h2>
       <p>CleanJSON is a free, browser-based JSON formatter and validator. It formats messy JSON into readable, indented output and highlights syntax errors with precise line numbers. Works entirely in your browser — your data never leaves your machine.</p>
       <h3>How to use</h3>
       <ol>
@@ -156,6 +191,17 @@
         <li>If the JSON is invalid, an error message will appear with the line number.</li>
         <li>Use <strong>Copy</strong> to copy the formatted output to your clipboard.</li>
       </ol>
+      <h3>Features</h3>
+      <ul>
+        <li><strong>Format &amp; Validate</strong> — beautify JSON with syntax highlighting and line-level error reporting.</li>
+        <li><strong>Minify</strong> — compress JSON by removing all whitespace.</li>
+        <li><strong>Escape / Unescape</strong> — convert JSON to and from escaped strings.</li>
+        <li><strong>Tree View</strong> — explore JSON as a collapsible tree with JSON path finder.</li>
+        <li><strong>Share</strong> — generate a shareable URL with your JSON encoded in the link.</li>
+        <li><strong>Download</strong> — save formatted JSON as a <code>.json</code> file.</li>
+        <li><strong>Dark Mode</strong> — gentle dark theme that respects your system preference.</li>
+        <li><strong>Keyboard Shortcuts</strong> — press <kbd>?</kbd> to see all available shortcuts.</li>
+      </ul>
     </section>
   </main>
 
@@ -178,6 +224,29 @@
   <!-- ===== AD: BOTTOM STICKY (mobile) ===== -->
   <div id="adsterra-banner-bottom" class="ad-banner ad-banner--bottom" aria-hidden="true">
     <!-- ADSTERRA: paste bottom sticky banner code here (mobile) -->
+  </div>
+
+  <!-- Keyboard shortcuts modal -->
+  <div id="shortcutsModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title" style="display:none">
+    <div class="modal-content" role="document">
+      <div class="modal-header">
+        <h2 id="shortcuts-title">Keyboard Shortcuts</h2>
+        <button id="shortcutsClose" class="btn-icon" aria-label="Close shortcuts panel">&times;</button>
+      </div>
+      <div class="modal-body">
+        <dl class="shortcuts-list">
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></dt><dd>Format JSON</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></dt><dd>Validate JSON</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></dt><dd>Minify JSON</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></dt><dd>Copy output</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></dt><dd>Clear all</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></dt><dd>Share URL</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></dt><dd>Download JSON</dd></div>
+          <div class="shortcut-item"><dt><kbd>Escape</kbd></dt><dd>Close this panel</dd></div>
+          <div class="shortcut-item"><dt><kbd>?</kbd></dt><dd>Open shortcuts (when not typing)</dd></div>
+        </dl>
+      </div>
+    </div>
   </div>
 
   <noscript>

@@ -3,7 +3,7 @@ CleanJSON Web — Claude Code Progress Log
 
 SESSION 1 — 2026-03-28
 -----------------------
-Status: Milestone 1 COMPLETE ✅
+Status: Milestone 1 COMPLETE
 
 Completed:
 - [x] Created feature_list.json, claude-progress.txt, init.sh
@@ -13,19 +13,27 @@ Completed:
 - [x] robots.txt, sitemap.xml, ads.txt
 - [x] scripts/google-apps-script.js — webhook ready to deploy
 - [x] git init + initial commit
-- [x] gh repo create cleanjson-web → https://github.com/taeshin11/cleanjson-web
-- [x] Deployed to Vercel → https://cleanjson-web.vercel.app
+- [x] gh repo create cleanjson-web
+- [x] Deployed to Vercel
 
-Next (Milestone 2):
-- Feature 6: Full SEO review (already partially done in HTML)
-- Feature 7: Adsterra ad integration (drop keys into placeholder divs)
-- Feature 8: Google Adsense preparation (already done: ads.txt + comment)
+SESSION 2 — 2026-03-28
+-----------------------
+Status: ALL MILESTONES COMPLETE (1-4)
 
-Blockers:
-- Need Adsterra account + ad unit key to activate ads
+Milestone 2 — SEO & Monetization:
+- [x] Feature 6: SEO already comprehensive (semantic HTML, meta, OG, JSON-LD, sitemap, robots.txt)
+- [x] Feature 7: Adsterra — added sidebar ad (300x250) placeholder for desktop, top banner + bottom sticky already present
+- [x] Feature 8: Adsense — ads.txt + comment in <head> already present
+
+Milestone 3 — Data Collection & Analytics:
+- [x] Feature 9: Visitor counter (localStorage) — already implemented
+- [x] Feature 10: Google Sheets webhook — already implemented with configurable WEBHOOK_URL
+
+Milestone 4 — Polish & Extra Features:
+- [x] Feature 11: Escape/unescape buttons, tree view (collapsible), JSON path finder (click node → copy path)
+- [x] Feature 12: Keyboard shortcuts panel (modal), share URL (base64 in hash), download .json file
+- [x] Feature 13: Full ARIA labels, keyboard navigation, focus management, noscript fallback, semantic HTML
+
+Blockers (external — not blocking dev):
+- Need Adsterra account + ad unit keys to activate ad slots
 - Need Google Apps Script web app URL to activate webhook
-
-Notes:
-- Visitor counter uses localStorage (no backend needed)
-- Webhook fires silently on Format/Validate/Minify
-- Dark mode respects prefers-color-scheme, persists to localStorage

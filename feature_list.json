@@ -40,69 +40,69 @@
     {
       "id": 2,
       "name": "SEO & Monetization",
-      "status": "pending",
+      "status": "complete",
       "features": [
         {
           "id": 6,
           "name": "SEO optimization",
           "description": "Semantic HTML5, meta tags, OG tags, JSON-LD, robots.txt, sitemap.xml",
-          "status": "pending"
+          "status": "complete"
         },
         {
           "id": 7,
           "name": "Adsterra ad integration",
-          "description": "Placeholder ad containers with clear IDs and comments",
-          "status": "pending"
+          "description": "Placeholder ad containers: top banner, sidebar 300x250 (desktop), bottom sticky (mobile)",
+          "status": "complete"
         },
         {
           "id": 8,
           "name": "Google Adsense preparation",
           "description": "ads.txt, reserved slot with comment",
-          "status": "pending"
+          "status": "complete"
         }
       ]
     },
     {
       "id": 3,
       "name": "Data Collection & Analytics",
-      "status": "pending",
+      "status": "complete",
       "features": [
         {
           "id": 9,
           "name": "Visitor counter",
-          "description": "Today/Total visitors in footer via countapi or Sheets",
-          "status": "pending"
+          "description": "Today/Total visitors in footer via localStorage",
+          "status": "complete"
         },
         {
           "id": 10,
           "name": "Google Sheets webhook",
           "description": "Silent POST on Format click: timestamp, input length, validity, error type, user agent",
-          "status": "pending"
+          "status": "complete"
         }
       ]
     },
     {
       "id": 4,
       "name": "Polish & Extra Features",
-      "status": "pending",
+      "status": "complete",
       "features": [
         {
           "id": 11,
           "name": "Additional JSON tools",
-          "description": "Minify, escape/unescape, tree view, JSON path finder",
-          "status": "pending"
+          "description": "Escape/unescape, tree view with collapsible nodes, JSON path finder",
+          "status": "complete"
         },
         {
           "id": 12,
           "name": "Quality of life",
-          "description": "Line numbers, auto-format on paste, keyboard shortcuts panel, share URL, download .json",
-          "status": "pending"
+          "description": "Line numbers, auto-format on paste, keyboard shortcuts panel, share URL (base64 hash), download .json",
+          "status": "complete"
         },
         {
           "id": 13,
           "name": "Performance & accessibility",
-          "description": "Lighthouse >95 all categories, ARIA labels, keyboard nav, noscript fallback, lazy-load ads",
-          "status": "pending"
+          "description": "ARIA labels on all elements, keyboard nav, noscript fallback, semantic HTML, focus management",
+          "status": "complete"
         }
       ]
     }

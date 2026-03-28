@@ -10,24 +10,38 @@ const WEBHOOK_URL = ''; // TODO: paste Google Apps Script web app URL here
 const INDENT = 2;
 
 // ---- DOM refs ----
-const jsonInput      = document.getElementById('jsonInput');
-const jsonOutputCode = document.getElementById('jsonOutputCode');
-const jsonOutput     = document.getElementById('jsonOutput');
-const errorDisplay   = document.getElementById('errorDisplay');
-const formatBtn      = document.getElementById('formatBtn');
-const validateBtn    = document.getElementById('validateBtn');
-const minifyBtn      = document.getElementById('minifyBtn');
-const clearBtn       = document.getElementById('clearBtn');
-const copyBtn        = document.getElementById('copyBtn');
-const darkModeToggle = document.getElementById('darkModeToggle');
-const lineNumbers    = document.getElementById('lineNumbers');
-const tabBtns        = document.querySelectorAll('.tab-btn');
-const inputPanel     = document.getElementById('input-panel');
-const outputPanel    = document.getElementById('output-panel');
+const jsonInput       = document.getElementById('jsonInput');
+const jsonOutputCode  = document.getElementById('jsonOutputCode');
+const jsonOutput      = document.getElementById('jsonOutput');
+const treeView        = document.getElementById('treeView');
+const errorDisplay    = document.getElementById('errorDisplay');
+const formatBtn       = document.getElementById('formatBtn');
+const validateBtn     = document.getElementById('validateBtn');
+const minifyBtn       = document.getElementById('minifyBtn');
+const escapeBtn       = document.getElementById('escapeBtn');
+const unescapeBtn     = document.getElementById('unescapeBtn');
+const downloadBtn     = document.getElementById('downloadBtn');
+const shareBtn        = document.getElementById('shareBtn');
+const clearBtn        = document.getElementById('clearBtn');
+const copyBtn         = document.getElementById('copyBtn');
+const treeToggleBtn   = document.getElementById('treeToggleBtn');
+const darkModeToggle  = document.getElementById('darkModeToggle');
+const lineNumbers     = document.getElementById('lineNumbers');
+const tabBtns         = document.querySelectorAll('.tab-btn');
+const inputPanel      = document.getElementById('input-panel');
+const outputPanel     = document.getElementById('output-panel');
+const shortcutsBtn    = document.getElementById('shortcutsBtn');
+const shortcutsModal  = document.getElementById('shortcutsModal');
+const shortcutsClose  = document.getElementById('shortcutsClose');
+const jsonPathDisplay = document.getElementById('jsonPathDisplay');
+const jsonPathValue   = document.getElementById('jsonPathValue');
+const jsonPathCopy    = document.getElementById('jsonPathCopy');
 
 // ---- State ----
 let lastValidJSON = null;
+let lastParsed = null;
 let isDark = false;
+let treeViewActive = false;
 
 // ============================================================
 // Dark mode
@@ -42,7 +56,6 @@ function applyTheme(dark) {
 
 darkModeToggle.addEventListener('click', () => applyTheme(!isDark));
 
-// Restore saved theme
 (function () {
   try {
     const saved = localStorage.getItem('cleanjson-theme');
@@ -60,7 +73,6 @@ function updateLineNumbers() {
   let nums = '';
   for (let i = 1; i <= lines; i++) nums += i + '\n';
   lineNumbers.textContent = nums;
-  // Sync scroll
   lineNumbers.scrollTop = jsonInput.scrollTop;
 }
 
@@ -72,7 +84,6 @@ updateLineNumbers();
 // Syntax highlighting
 // ============================================================
 function syntaxHighlight(json) {
-  // Escape HTML first
   const escaped = json
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -83,7 +94,6 @@ function syntaxHighlight(json) {
     (match) => {
       if (/^"/.test(match)) {
         if (/:$/.test(match)) {
-          // Key: strip quotes and colon for display, then re-wrap
           return `<span class="syn-key">${match.slice(0, -1)}</span>:`;
         }
         return `<span class="syn-str">${match}</span>`;
@@ -98,7 +108,7 @@ function syntaxHighlight(json) {
 // ============================================================
 // Status messages
 // ============================================================
-function showStatus(type, title, detail = '') {
+function showStatus(type, title, detail) {
   const icons = { error: '❌', success: '✅', info: 'ℹ️' };
   errorDisplay.innerHTML = `
     <div class="status-msg status-msg--${type}" role="alert">
@@ -119,7 +129,7 @@ function escapeHTML(str) {
 }
 
 // ============================================================
-// Parse helper — returns { ok, parsed, error, line, col }
+// Parse helper
 // ============================================================
 function tryParse(text) {
   try {
@@ -127,14 +137,11 @@ function tryParse(text) {
     return { ok: true, parsed };
   } catch (e) {
     const msg = e.message || 'Invalid JSON';
-    // Extract line/col from error message (Chrome: "at position N", Firefox: "line N col M")
     let line = null, col = null;
 
-    // "JSON.parse: ... at line N column M of the JSON data" (Firefox)
     let m = msg.match(/line (\d+) col(?:umn)? (\d+)/i);
     if (m) { line = parseInt(m[1], 10); col = parseInt(m[2], 10); }
 
-    // "Unexpected token ... at position N" (Chrome/V8)
     if (!m) {
       m = msg.match(/at position (\d+)/i);
       if (m) {
@@ -155,8 +162,6 @@ function tryParse(text) {
 function highlightErrorLine(lineNum) {
   jsonInput.classList.add('error-state');
   if (!lineNum) return;
-
-  // Scroll textarea to show the error line
   const lines = jsonInput.value.split('\n');
   let charPos = 0;
   for (let i = 0; i < lineNum - 1 && i < lines.length; i++) {
@@ -186,8 +191,9 @@ function formatJSON() {
     setOutput(formatted);
     clearErrorState();
     lastValidJSON = formatted;
-    showStatus('success', 'Valid JSON', `Formatted successfully.`);
-    copyBtn.disabled = false;
+    lastParsed = result.parsed;
+    showStatus('success', 'Valid JSON', 'Formatted successfully.');
+    enableOutputButtons();
     sendWebhook({ inputLength: text.length, isValid: true, errorType: '' });
   } else {
     clearOutput();
@@ -195,7 +201,7 @@ function formatJSON() {
     highlightErrorLine(result.line);
     const loc = result.line ? `Line ${result.line}${result.col ? `, col ${result.col}` : ''}` : '';
     showStatus('error', `Invalid JSON${loc ? ' — ' + loc : ''}`, result.error);
-    copyBtn.disabled = true;
+    disableOutputButtons();
     sendWebhook({ inputLength: text.length, isValid: false, errorType: result.error });
   }
 }
@@ -212,6 +218,7 @@ function validateJSON() {
   if (result.ok) {
     clearErrorState();
     lastValidJSON = JSON.stringify(result.parsed, null, INDENT);
+    lastParsed = result.parsed;
     showStatus('success', 'Valid JSON', 'No errors found.');
     sendWebhook({ inputLength: text.length, isValid: true, errorType: '' });
   } else {
@@ -235,8 +242,9 @@ function minifyJSON() {
     setOutput(minified);
     clearErrorState();
     lastValidJSON = minified;
+    lastParsed = result.parsed;
     showStatus('info', 'Minified', `${minified.length} characters`);
-    copyBtn.disabled = false;
+    enableOutputButtons();
   } else {
     const loc = result.line ? `Line ${result.line}` : '';
     showStatus('error', `Cannot minify — Invalid JSON${loc ? ' (' + loc + ')' : ''}`, result.error);
@@ -244,16 +252,282 @@ function minifyJSON() {
 }
 
 // ============================================================
+// Escape / Unescape
+// ============================================================
+function escapeJSON() {
+  const text = jsonInput.value.trim();
+  if (!text) return;
+  const escaped = JSON.stringify(text);
+  setOutput(escaped);
+  showStatus('info', 'Escaped', 'JSON string escaped.');
+  copyBtn.disabled = false;
+}
+
+function unescapeJSON() {
+  const text = jsonInput.value.trim();
+  if (!text) return;
+  try {
+    const unescaped = JSON.parse(text);
+    if (typeof unescaped !== 'string') {
+      // If it parsed to a non-string, just format it
+      const formatted = JSON.stringify(unescaped, null, INDENT);
+      jsonInput.value = formatted;
+      updateLineNumbers();
+      setOutput(formatted);
+      lastValidJSON = formatted;
+      lastParsed = unescaped;
+      showStatus('success', 'Parsed JSON', 'Input was valid JSON, formatted it.');
+      enableOutputButtons();
+    } else {
+      // It was a JSON string — put unescaped value back in input
+      jsonInput.value = unescaped;
+      updateLineNumbers();
+      // Try to format it if it's valid JSON
+      const inner = tryParse(unescaped);
+      if (inner.ok) {
+        const formatted = JSON.stringify(inner.parsed, null, INDENT);
+        jsonInput.value = formatted;
+        updateLineNumbers();
+        setOutput(formatted);
+        lastValidJSON = formatted;
+        lastParsed = inner.parsed;
+        showStatus('success', 'Unescaped & formatted', 'String unescaped and JSON formatted.');
+        enableOutputButtons();
+      } else {
+        setOutput(unescaped);
+        showStatus('info', 'Unescaped', 'String unescaped (not valid JSON).');
+        copyBtn.disabled = false;
+      }
+    }
+  } catch (_) {
+    showStatus('error', 'Cannot unescape', 'Input is not a valid escaped string.');
+  }
+}
+
+// ============================================================
+// Tree view
+// ============================================================
+function toggleTreeView() {
+  treeViewActive = !treeViewActive;
+  if (treeViewActive && lastParsed !== null) {
+    treeView.innerHTML = '';
+    treeView.appendChild(buildTreeNode(lastParsed, ''));
+    treeView.style.display = 'block';
+    jsonOutput.style.display = 'none';
+    treeToggleBtn.innerHTML = '📄 Code';
+  } else {
+    treeView.style.display = 'none';
+    jsonOutput.style.display = 'block';
+    treeToggleBtn.innerHTML = '🌲 Tree';
+    treeViewActive = false;
+  }
+}
+
+function buildTreeNode(data, path) {
+  const frag = document.createDocumentFragment();
+
+  if (data === null) {
+    const span = document.createElement('span');
+    span.className = 'tree-null';
+    span.textContent = 'null';
+    span.setAttribute('data-path', path);
+    span.addEventListener('click', () => showJsonPath(path));
+    frag.appendChild(span);
+    return frag;
+  }
+
+  if (typeof data !== 'object') {
+    const span = document.createElement('span');
+    if (typeof data === 'string') {
+      span.className = 'tree-str';
+      span.textContent = JSON.stringify(data);
+    } else if (typeof data === 'boolean') {
+      span.className = 'tree-bool';
+      span.textContent = String(data);
+    } else {
+      span.className = 'tree-num';
+      span.textContent = String(data);
+    }
+    span.setAttribute('data-path', path);
+    span.addEventListener('click', () => showJsonPath(path));
+    frag.appendChild(span);
+    return frag;
+  }
+
+  const isArray = Array.isArray(data);
+  const entries = isArray ? data.map((v, i) => [i, v]) : Object.entries(data);
+  const bracket = isArray ? ['[', ']'] : ['{', '}'];
+
+  const container = document.createElement('div');
+
+  // Toggle
+  const toggle = document.createElement('span');
+  toggle.className = 'tree-toggle';
+  toggle.textContent = '▼';
+  toggle.setAttribute('role', 'button');
+  toggle.setAttribute('aria-label', 'Toggle collapse');
+  toggle.tabIndex = 0;
+
+  const openBracket = document.createElement('span');
+  openBracket.className = 'tree-bracket';
+  openBracket.textContent = bracket[0];
+
+  const count = document.createElement('span');
+  count.className = 'tree-count';
+  count.textContent = ` ${entries.length} ${isArray ? 'items' : 'keys'}`;
+
+  container.appendChild(toggle);
+  container.appendChild(openBracket);
+  container.appendChild(count);
+
+  const children = document.createElement('div');
+  children.className = 'tree-children tree-node';
+
+  entries.forEach(([key, value]) => {
+    const row = document.createElement('div');
+    const childPath = isArray ? `${path}[${key}]` : `${path}.${key}`;
+
+    if (!isArray) {
+      const keySpan = document.createElement('span');
+      keySpan.className = 'tree-key';
+      keySpan.textContent = `"${key}"`;
+      keySpan.setAttribute('data-path', childPath);
+      keySpan.addEventListener('click', (e) => { e.stopPropagation(); showJsonPath(childPath); });
+      row.appendChild(keySpan);
+      row.appendChild(document.createTextNode(': '));
+    }
+
+    row.appendChild(buildTreeNode(value, childPath));
+    children.appendChild(row);
+  });
+
+  const closeBracket = document.createElement('span');
+  closeBracket.className = 'tree-bracket';
+  closeBracket.textContent = bracket[1];
+
+  container.appendChild(children);
+  container.appendChild(closeBracket);
+
+  function toggleCollapse() {
+    const collapsed = !children.classList.contains('hidden');
+    children.classList.toggle('hidden', collapsed);
+    closeBracket.style.display = collapsed ? 'none' : '';
+    count.style.display = collapsed ? '' : 'none';
+    toggle.classList.toggle('collapsed', collapsed);
+    toggle.textContent = collapsed ? '▶' : '▼';
+  }
+
+  count.style.display = 'none';
+  toggle.addEventListener('click', toggleCollapse);
+  toggle.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCollapse(); } });
+
+  frag.appendChild(container);
+  return frag;
+}
+
+// ============================================================
+// JSON Path finder
+// ============================================================
+function showJsonPath(path) {
+  const displayPath = path || '$';
+  const normalized = '$' + displayPath;
+  jsonPathValue.textContent = normalized;
+  jsonPathDisplay.style.display = 'flex';
+}
+
+jsonPathCopy.addEventListener('click', async () => {
+  const text = jsonPathValue.textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    jsonPathCopy.textContent = '✅';
+    setTimeout(() => { jsonPathCopy.textContent = '📋'; }, 1200);
+  } catch (_) {}
+});
+
+// ============================================================
+// Share URL
+// ============================================================
+function shareJSON() {
+  const text = jsonInput.value.trim();
+  if (!text) return;
+  try {
+    const encoded = btoa(unescape(encodeURIComponent(text)));
+    const url = window.location.origin + window.location.pathname + '#json=' + encoded;
+    navigator.clipboard.writeText(url).then(() => {
+      showStatus('success', 'Share URL copied!', 'Paste it anywhere to share your JSON.');
+    }).catch(() => {
+      showStatus('info', 'Share URL', url);
+    });
+  } catch (_) {
+    showStatus('error', 'Share failed', 'Could not encode JSON for sharing.');
+  }
+}
+
+// Load JSON from URL hash on page load
+(function loadFromHash() {
+  try {
+    const hash = window.location.hash;
+    if (hash.startsWith('#json=')) {
+      const encoded = hash.slice(6);
+      const decoded = decodeURIComponent(escape(atob(encoded)));
+      jsonInput.value = decoded;
+      updateLineNumbers();
+      setTimeout(formatJSON, 0);
+    }
+  } catch (_) {}
+})();
+
+// ============================================================
+// Download JSON file
+// ============================================================
+function downloadJSON() {
+  const text = jsonOutputCode.textContent;
+  if (!text) return;
+  const blob = new Blob([text], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'formatted.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showStatus('success', 'Downloaded', 'formatted.json saved.');
+}
+
+// ============================================================
 // Output helpers
 // ============================================================
 function setOutput(json) {
   jsonOutputCode.innerHTML = syntaxHighlight(json);
+  if (treeViewActive && lastParsed !== null) {
+    treeView.innerHTML = '';
+    treeView.appendChild(buildTreeNode(lastParsed, ''));
+  }
 }
 
 function clearOutput() {
   jsonOutputCode.innerHTML = '';
+  treeView.innerHTML = '';
   lastValidJSON = null;
+  lastParsed = null;
+  disableOutputButtons();
+  jsonPathDisplay.style.display = 'none';
+  if (treeViewActive) toggleTreeView();
+}
+
+function enableOutputButtons() {
+  copyBtn.disabled = false;
+  downloadBtn.disabled = false;
+  shareBtn.disabled = false;
+  treeToggleBtn.disabled = false;
+}
+
+function disableOutputButtons() {
   copyBtn.disabled = true;
+  downloadBtn.disabled = true;
+  shareBtn.disabled = true;
+  treeToggleBtn.disabled = true;
 }
 
 // ============================================================
@@ -269,7 +543,6 @@ copyBtn.addEventListener('click', async () => {
     copyBtn.disabled = true;
     setTimeout(() => { copyBtn.innerHTML = orig; copyBtn.disabled = false; }, 1800);
   } catch (_) {
-    // Fallback for older browsers
     const ta = document.createElement('textarea');
     ta.value = text;
     ta.style.position = 'fixed';
@@ -300,26 +573,67 @@ clearBtn.addEventListener('click', () => {
 formatBtn.addEventListener('click', formatJSON);
 validateBtn.addEventListener('click', validateJSON);
 minifyBtn.addEventListener('click', minifyJSON);
+escapeBtn.addEventListener('click', escapeJSON);
+unescapeBtn.addEventListener('click', unescapeJSON);
+downloadBtn.addEventListener('click', downloadJSON);
+shareBtn.addEventListener('click', shareJSON);
+treeToggleBtn.addEventListener('click', toggleTreeView);
 
 // ============================================================
-// Keyboard shortcut: Ctrl+Shift+F (or Cmd+Shift+F on Mac)
+// Keyboard shortcuts
 // ============================================================
 document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'F') {
-    e.preventDefault();
-    formatJSON();
+  const ctrl = e.ctrlKey || e.metaKey;
+
+  if (ctrl && e.shiftKey) {
+    switch (e.key.toUpperCase()) {
+      case 'F': e.preventDefault(); formatJSON(); break;
+      case 'V': e.preventDefault(); validateJSON(); break;
+      case 'M': e.preventDefault(); minifyJSON(); break;
+      case 'C': e.preventDefault(); copyBtn.click(); break;
+      case 'X': e.preventDefault(); clearBtn.click(); break;
+      case 'S': e.preventDefault(); shareJSON(); break;
+      case 'D': e.preventDefault(); downloadJSON(); break;
+    }
+    return;
   }
+
+  // '?' to open shortcuts (when not in input)
+  if (e.key === '?' && document.activeElement !== jsonInput) {
+    e.preventDefault();
+    openShortcutsModal();
+  }
+
+  // Escape to close modal
+  if (e.key === 'Escape' && shortcutsModal.style.display !== 'none') {
+    closeShortcutsModal();
+  }
+});
+
+// ============================================================
+// Shortcuts modal
+// ============================================================
+function openShortcutsModal() {
+  shortcutsModal.style.display = 'flex';
+  shortcutsClose.focus();
+}
+
+function closeShortcutsModal() {
+  shortcutsModal.style.display = 'none';
+}
+
+shortcutsBtn.addEventListener('click', openShortcutsModal);
+shortcutsClose.addEventListener('click', closeShortcutsModal);
+shortcutsModal.addEventListener('click', (e) => {
+  if (e.target === shortcutsModal) closeShortcutsModal();
 });
 
 // ============================================================
 // Auto-format on paste
 // ============================================================
 jsonInput.addEventListener('paste', () => {
-  // Give the paste event time to populate the textarea
   setTimeout(() => {
-    if (jsonInput.value.trim()) {
-      formatJSON();
-    }
+    if (jsonInput.value.trim()) formatJSON();
   }, 0);
 });
 
@@ -372,10 +686,8 @@ tabBtns.forEach(btn => {
   btn.addEventListener('click', () => activateTab(btn.dataset.tab));
 });
 
-// Initialize — input tab active by default
 activateTab('input');
 
-// Auto-switch to output tab when formatting on mobile
 function maybeShowOutput() {
   if (window.innerWidth <= 680) activateTab('output');
 }
@@ -383,16 +695,14 @@ formatBtn.addEventListener('click', maybeShowOutput);
 minifyBtn.addEventListener('click', maybeShowOutput);
 
 // ============================================================
-// Visitor counter (localStorage-based, no backend needed for MVP)
+// Visitor counter (localStorage-based)
 // ============================================================
 (function initVisitorCounter() {
   try {
     const today = new Date().toISOString().slice(0, 10);
     const data  = JSON.parse(localStorage.getItem('cleanjson-visitors') || '{}');
     const total = (data.total || 0) + (data.lastVisit === today ? 0 : 1);
-    const todayCount = data.lastVisit === today
-      ? (data.todayCount || 1)
-      : 1;
+    const todayCount = data.lastVisit === today ? (data.todayCount || 1) : 1;
 
     const newData = { total, lastVisit: today, todayCount };
     localStorage.setItem('cleanjson-visitors', JSON.stringify(newData));
@@ -400,7 +710,6 @@ minifyBtn.addEventListener('click', maybeShowOutput);
     document.getElementById('visitorToday').textContent = `Today: ${todayCount.toLocaleString()}`;
     document.getElementById('visitorTotal').textContent  = `Total: ${total.toLocaleString()}`;
   } catch (_) {
-    // If localStorage is blocked, just hide the counter
     const counter = document.getElementById('visitorCounter');
     if (counter) counter.style.display = 'none';
   }
@@ -422,5 +731,5 @@ function sendWebhook(payload) {
       errorType:   payload.errorType || '',
       userAgent:   navigator.userAgent
     })
-  }).catch(() => {}); // silent fail
+  }).catch(() => {});
 }
