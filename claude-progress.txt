@@ -1,0 +1,31 @@
+CleanJSON Web — Claude Code Progress Log
+==========================================
+
+SESSION 1 — 2026-03-28
+-----------------------
+Status: Milestone 1 in progress
+
+Completed:
+- [x] Read PRD.md and planned implementation
+- [x] Created feature_list.json (13 features across 4 milestones)
+- [x] Created claude-progress.txt (this file)
+- [x] Created init.sh
+
+In Progress:
+- [ ] index.html — building now
+- [ ] style.css — building now
+- [ ] app.js — building now
+
+Next:
+- Complete Milestone 1 (features 1-5)
+- git init + gh repo create cleanjson-web
+- git push (Milestone 1 complete)
+- Deploy to Vercel/Netlify
+
+Blockers:
+- None
+
+Notes:
+- Using vanilla HTML/CSS/JS (zero build step)
+- Soft warm theme per PRD color spec
+- Responsive: desktop side-by-side, mobile tabbed

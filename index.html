@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON Formatter &amp; Validator — Free Online Tool | CleanJSON</title>
+  <meta name="description" content="Free online JSON formatter, validator and beautifier. Paste your JSON, instantly format and validate it with error highlighting. No signup required." />
+  <meta name="keywords" content="JSON formatter, JSON validator, JSON beautifier, JSON lint, online JSON tool, format JSON, validate JSON" />
+  <link rel="canonical" href="https://cleanjson.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="JSON Formatter & Validator — Free Online Tool | CleanJSON" />
+  <meta property="og:description" content="Free online JSON formatter and validator. Instant formatting with syntax highlighting and error reporting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cleanjson.app/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="JSON Formatter & Validator | CleanJSON" />
+  <meta name="twitter:description" content="Free online JSON formatter and validator. Instant syntax highlighting and error reporting." />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CleanJSON",
+    "url": "https://cleanjson.app/",
+    "description": "Free online JSON formatter, validator and beautifier",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- GOOGLE ADSENSE: paste auto-ads script here -->
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="CleanJSON home">
+        <span class="logo-icon" aria-hidden="true">{ }</span>
+        <span class="logo-text">CleanJSON</span>
+      </a>
+      <nav class="header-nav" aria-label="Site navigation">
+        <button id="darkModeToggle" class="btn-icon" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="icon-sun" aria-hidden="true">☀️</span>
+          <span class="icon-moon" aria-hidden="true" style="display:none">🌙</span>
+        </button>
+        <a href="https://github.com/cleanjson-web" class="btn-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== AD: TOP BANNER ===== -->
+  <div id="adsterra-banner-top" class="ad-banner ad-banner--top" aria-hidden="true">
+    <!-- ADSTERRA: paste banner code here (728x90 leaderboard or responsive) -->
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content" role="main">
+    <section class="hero" aria-labelledby="main-heading">
+      <h1 id="main-heading">JSON Formatter &amp; Validator</h1>
+      <p class="hero-subtitle">Paste your JSON below — format, validate, and beautify it instantly. Free, no signup required.</p>
+    </section>
+
+    <!-- Mobile tab switcher -->
+    <div class="tab-switcher" role="tablist" aria-label="Editor panels">
+      <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" aria-controls="input-panel" id="tab-input" data-tab="input">Input</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="output-panel" id="tab-output" data-tab="output">Output</button>
+    </div>
+
+    <!-- Editor area -->
+    <div class="editor-area">
+      <!-- Input panel -->
+      <section class="panel panel--input" id="input-panel" role="tabpanel" aria-labelledby="tab-input">
+        <div class="panel-header">
+          <h2 class="panel-title">Input</h2>
+          <span class="panel-hint">Paste or type JSON here</span>
+        </div>
+        <div class="textarea-wrapper" id="inputWrapper">
+          <div class="line-numbers" id="lineNumbers" aria-hidden="true"></div>
+          <textarea
+            id="jsonInput"
+            class="json-textarea"
+            placeholder='{\n  "paste": "your JSON here"\n}'
+            spellcheck="false"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            aria-label="JSON input"
+            aria-describedby="errorDisplay"
+          ></textarea>
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <div class="panel-divider" aria-hidden="true"></div>
+
+      <!-- Output panel -->
+      <section class="panel panel--output" id="output-panel" role="tabpanel" aria-labelledby="tab-output">
+        <div class="panel-header">
+          <h2 class="panel-title">Output</h2>
+          <button id="copyBtn" class="btn-small" aria-label="Copy formatted JSON" title="Copy to clipboard" disabled>
+            <span class="copy-icon" aria-hidden="true">📋</span> Copy
+          </button>
+        </div>
+        <pre id="jsonOutput" class="json-output" aria-live="polite" aria-label="Formatted JSON output"><code id="jsonOutputCode"></code></pre>
+      </section>
+    </div>
+
+    <!-- Action bar -->
+    <div class="action-bar" role="toolbar" aria-label="JSON actions">
+      <button id="formatBtn" class="btn btn--primary" aria-label="Format JSON (Ctrl+Shift+F)">
+        Format <kbd>Ctrl+Shift+F</kbd>
+      </button>
+      <button id="validateBtn" class="btn btn--secondary" aria-label="Validate JSON">
+        Validate
+      </button>
+      <button id="minifyBtn" class="btn btn--secondary" aria-label="Minify JSON">
+        Minify
+      </button>
+      <button id="clearBtn" class="btn btn--ghost" aria-label="Clear input">
+        Clear
+      </button>
+    </div>
+
+    <!-- Error / success display -->
+    <div id="errorDisplay" class="status-display" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+    <!-- SEO content -->
+    <section class="seo-content">
+      <h2>About CleanJSON</h2>
+      <p>CleanJSON is a free, browser-based JSON formatter and validator. It formats messy JSON into readable, indented output and highlights syntax errors with precise line numbers. Works entirely in your browser — your data never leaves your machine.</p>
+      <h3>How to use</h3>
+      <ol>
+        <li>Paste your JSON into the <strong>Input</strong> panel on the left.</li>
+        <li>Click <strong>Format</strong> (or press <kbd>Ctrl+Shift+F</kbd>) to beautify it.</li>
+        <li>If the JSON is invalid, an error message will appear with the line number.</li>
+        <li>Use <strong>Copy</strong> to copy the formatted output to your clipboard.</li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-copy">&copy; 2026 CleanJSON. All rights reserved.</p>
+        <p class="footer-tagline">Free JSON tools for developers.</p>
+      </div>
+      <div class="footer-right" id="visitorCounter" aria-label="Site visitor count">
+        <span class="visitor-icon" aria-hidden="true">👥</span>
+        <span id="visitorToday">Today: —</span>
+        <span class="visitor-sep" aria-hidden="true">|</span>
+        <span id="visitorTotal">Total: —</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== AD: BOTTOM STICKY (mobile) ===== -->
+  <div id="adsterra-banner-bottom" class="ad-banner ad-banner--bottom" aria-hidden="true">
+    <!-- ADSTERRA: paste bottom sticky banner code here (mobile) -->
+  </div>
+
+  <noscript>
+    <div style="padding:2rem;text-align:center;font-family:sans-serif;">
+      <strong>JavaScript is required</strong> to use CleanJSON. Please enable JavaScript in your browser.
+    </div>
+  </noscript>
+
+  <script src="app.js"></script>
+</body>
+</html>
