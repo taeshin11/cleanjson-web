@@ -3,29 +3,29 @@ CleanJSON Web — Claude Code Progress Log
 
 SESSION 1 — 2026-03-28
 -----------------------
-Status: Milestone 1 in progress
+Status: Milestone 1 COMPLETE ✅
 
 Completed:
-- [x] Read PRD.md and planned implementation
-- [x] Created feature_list.json (13 features across 4 milestones)
-- [x] Created claude-progress.txt (this file)
-- [x] Created init.sh
+- [x] Created feature_list.json, claude-progress.txt, init.sh
+- [x] index.html — semantic HTML5, SEO meta, OG tags, JSON-LD, ad placeholders
+- [x] style.css — soft warm theme, dark mode, syntax highlighting, responsive
+- [x] app.js — format/validate/minify, line numbers, drag-drop, paste, shortcuts
+- [x] robots.txt, sitemap.xml, ads.txt
+- [x] scripts/google-apps-script.js — webhook ready to deploy
+- [x] git init + initial commit
+- [x] gh repo create cleanjson-web → https://github.com/taeshin11/cleanjson-web
+- [x] Deployed to Vercel → https://cleanjson-web.vercel.app
 
-In Progress:
-- [ ] index.html — building now
-- [ ] style.css — building now
-- [ ] app.js — building now
-
-Next:
-- Complete Milestone 1 (features 1-5)
-- git init + gh repo create cleanjson-web
-- git push (Milestone 1 complete)
-- Deploy to Vercel/Netlify
+Next (Milestone 2):
+- Feature 6: Full SEO review (already partially done in HTML)
+- Feature 7: Adsterra ad integration (drop keys into placeholder divs)
+- Feature 8: Google Adsense preparation (already done: ads.txt + comment)
 
 Blockers:
-- None
+- Need Adsterra account + ad unit key to activate ads
+- Need Google Apps Script web app URL to activate webhook
 
 Notes:
-- Using vanilla HTML/CSS/JS (zero build step)
-- Soft warm theme per PRD color spec
-- Responsive: desktop side-by-side, mobile tabbed
+- Visitor counter uses localStorage (no backend needed)
+- Webhook fires silently on Format/Validate/Minify
+- Dark mode respects prefers-color-scheme, persists to localStorage

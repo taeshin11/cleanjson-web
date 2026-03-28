@@ -3,37 +3,37 @@
     {
       "id": 1,
       "name": "Core MVP",
-      "status": "in_progress",
+      "status": "complete",
       "features": [
         {
           "id": 1,
           "name": "Project scaffolding",
           "description": "Create index.html, style.css, app.js, init git, GitHub repo, tracking files",
-          "status": "in_progress"
+          "status": "complete"
         },
         {
           "id": 2,
           "name": "JSON input/output editor",
           "description": "Left panel textarea, right panel highlighted output, Format/Clear/Copy buttons, drag-drop, Ctrl+Shift+F",
-          "status": "pending"
+          "status": "complete"
         },
         {
           "id": 3,
           "name": "JSON validation with error reporting",
           "description": "Validate on click and paste, show line number + error message, highlight error line",
-          "status": "pending"
+          "status": "complete"
         },
         {
           "id": 4,
           "name": "Soft color theme",
           "description": "Warm neutral background, subtle shadows, rounded corners, muted syntax highlighting, dark mode toggle",
-          "status": "pending"
+          "status": "complete"
         },
         {
           "id": 5,
           "name": "Responsive layout",
           "description": "Desktop side-by-side, tablet stacked, mobile tabbed view",
-          "status": "pending"
+          "status": "complete"
         }
       ]
     },
