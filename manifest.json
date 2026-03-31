@@ -1,0 +1,19 @@
+{
+  "name": "CleanJSON — JSON Formatter & Validator",
+  "short_name": "CleanJSON",
+  "description": "Free online JSON formatter, validator and beautifier. 100% client-side, no signup required.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F3EF",
+  "theme_color": "#4A90D9",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>{ }</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["developer", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
+}

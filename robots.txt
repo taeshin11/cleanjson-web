@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /.vercel/
+Disallow: /.claude/
 
 Sitemap: https://cleanjson-web.vercel.app/sitemap.xml

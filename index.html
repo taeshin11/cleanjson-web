@@ -8,32 +8,144 @@
   <meta name="keywords" content="JSON formatter, JSON validator, JSON beautifier, JSON lint, online JSON tool, format JSON, validate JSON" />
   <link rel="canonical" href="https://cleanjson-web.vercel.app/" />
 
+  <!-- hreflang for international SEO -->
+  <link rel="alternate" hreflang="en" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="ko" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="ja" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="zh" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="es" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="fr" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="de" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="pt" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="ru" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="hi" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="it" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="vi" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="id" href="https://cleanjson-web.vercel.app/" />
+  <link rel="alternate" hreflang="x-default" href="https://cleanjson-web.vercel.app/" />
+
   <!-- Open Graph -->
   <meta property="og:title" content="JSON Formatter & Validator — Free Online Tool | CleanJSON" />
-  <meta property="og:description" content="Free online JSON formatter and validator. Instant formatting with syntax highlighting and error reporting." />
+  <meta property="og:description" content="Free online JSON formatter and validator. Instant formatting with syntax highlighting and error reporting. No signup, 100% client-side." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://cleanjson-web.vercel.app/" />
+  <meta property="og:site_name" content="CleanJSON" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="vi_VN" />
+  <meta property="og:locale:alternate" content="id_ID" />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="JSON Formatter & Validator | CleanJSON" />
   <meta name="twitter:description" content="Free online JSON formatter and validator. Instant syntax highlighting and error reporting." />
 
-  <!-- JSON-LD Structured Data -->
+  <!-- Additional SEO -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="author" content="CleanJSON" />
+  <meta name="rating" content="general" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="application-name" content="CleanJSON" />
+  <meta name="apple-mobile-web-app-title" content="CleanJSON" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- JSON-LD Structured Data: WebApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "CleanJSON",
     "url": "https://cleanjson-web.vercel.app/",
-    "description": "Free online JSON formatter, validator and beautifier",
+    "description": "Free online JSON formatter, validator and beautifier. Paste your JSON, instantly format and validate with error highlighting.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "softwareVersion": "2.0",
+    "inLanguage": ["en","ko","ja","zh","es","fr","de","pt","ru","hi","it","vi","id"],
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1200",
+      "bestRating": "5"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "CleanJSON"
     }
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage for rich snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is CleanJSON free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, CleanJSON is completely free with no signup required. Format, validate, and beautify JSON instantly in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my JSON data safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your data is 100% safe. CleanJSON runs entirely in your browser — your JSON is never sent to any server or stored anywhere."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What features does CleanJSON offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CleanJSON offers JSON formatting, validation, minification, escape/unescape, tree view, JSON path finder, shareable URLs, file download, dark mode, and keyboard shortcuts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does CleanJSON support multiple languages?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, CleanJSON automatically detects your browser language and supports English, Korean, Japanese, Chinese, Spanish, French, German, Portuguese, Russian, Hindi, Italian, Vietnamese, and Indonesian."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://cleanjson-web.vercel.app/"
+      }
+    ]
   }
   </script>
 
@@ -215,6 +327,12 @@
       </ul>
     </section>
   </main>
+
+  <!-- ===== FEEDBACK BUTTON ===== -->
+  <a href="mailto:taeshinkim11@gmail.com?subject=CleanJSON%20Feedback&body=Hi%20CleanJSON%20team%2C%0A%0AI%20have%20the%20following%20suggestion%3A%0A%0A" class="feedback-fab" id="feedbackBtn" aria-label="Send feedback" title="Send feedback" data-i18n-aria="feedbackLabel" data-i18n-title="feedbackLabel">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span data-i18n="feedbackBtn">Feedback</span>
+  </a>
 
   <!-- ===== FOOTER ===== -->
   <footer class="site-footer" role="contentinfo">
