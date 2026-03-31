@@ -42,6 +42,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>{ }</text></svg>" />
+  <meta name="theme-color" content="#F5F3EF" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1A1917" media="(prefers-color-scheme: dark)" />
+
   <link rel="stylesheet" href="style.css" />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7098271335538021" crossorigin="anonymous"></script>
@@ -56,7 +61,7 @@
         <span class="logo-text">CleanJSON</span>
       </a>
       <nav class="header-nav" aria-label="Site navigation">
-        <button id="darkModeToggle" class="btn-icon" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <button id="darkModeToggle" class="btn-icon" aria-label="Toggle dark mode" title="Toggle dark mode" data-i18n-aria="toggleDarkMode" data-i18n-title="toggleDarkMode">
           <span class="icon-sun" aria-hidden="true">☀️</span>
           <span class="icon-moon" aria-hidden="true" style="display:none">🌙</span>
         </button>
@@ -69,31 +74,20 @@
     </div>
   </header>
 
-  <!-- ===== AD: TOP BANNER ===== -->
-  <div id="adsterra-banner-top" class="ad-banner ad-banner--top" aria-hidden="true">
-    <script>
-      atOptions = {
-        'key' : '1a1134d4c49c2d586013de7c620cbc33',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script src="https://www.highperformanceformat.com/1a1134d4c49c2d586013de7c620cbc33/invoke.js"></script>
-  </div>
+  <!-- ===== AD: TOP BANNER (lazy-loaded) ===== -->
+  <div id="adsterra-banner-top" class="ad-banner ad-banner--top" aria-hidden="true"></div>
 
   <!-- ===== MAIN ===== -->
   <main class="main-content" role="main">
     <section class="hero" aria-labelledby="main-heading">
-      <h1 id="main-heading">JSON Formatter &amp; Validator</h1>
-      <p class="hero-subtitle">Paste your JSON below — format, validate, and beautify it instantly. Free, no signup required.</p>
+      <h1 id="main-heading" data-i18n="heroTitle">JSON Formatter &amp; Validator</h1>
+      <p class="hero-subtitle" data-i18n="heroSubtitle">Paste your JSON below — format, validate, and beautify it instantly. Free, no signup required.</p>
     </section>
 
     <!-- Mobile tab switcher -->
     <div class="tab-switcher" role="tablist" aria-label="Editor panels">
-      <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" aria-controls="input-panel" id="tab-input" data-tab="input">Input</button>
-      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="output-panel" id="tab-output" data-tab="output">Output</button>
+      <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" aria-controls="input-panel" id="tab-input" data-tab="input" data-i18n="tabInput">Input</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="output-panel" id="tab-output" data-tab="output" data-i18n="tabOutput">Output</button>
     </div>
 
     <!-- Editor area -->
@@ -102,11 +96,17 @@
         <!-- Input panel -->
         <section class="panel panel--input" id="input-panel" role="tabpanel" aria-labelledby="tab-input">
           <div class="panel-header">
-            <h2 class="panel-title">Input</h2>
-            <label class="panel-hint auto-paste-toggle">
-            <input type="checkbox" id="autoPasteToggle" checked aria-label="Auto-format on paste" />
-            Auto-format on paste
-          </label>
+            <h2 class="panel-title" data-i18n="panelInput">Input</h2>
+            <div class="panel-header-actions">
+              <label class="btn-small upload-label" aria-label="Upload JSON file" title="Upload .json file" data-i18n-aria="upload">
+                <span data-i18n="upload">📁 Upload</span>
+                <input type="file" id="fileUpload" accept=".json,application/json" hidden />
+              </label>
+              <label class="panel-hint auto-paste-toggle">
+                <input type="checkbox" id="autoPasteToggle" checked aria-label="Auto-format on paste" data-i18n-aria="autoPaste" />
+                <span data-i18n="autoPaste">Auto-format on paste</span>
+              </label>
+            </div>
           </div>
           <div class="textarea-wrapper" id="inputWrapper">
             <div class="line-numbers" id="lineNumbers" aria-hidden="true"></div>
@@ -114,6 +114,7 @@
               id="jsonInput"
               class="json-textarea"
               placeholder='{\n  "paste": "your JSON here"\n}'
+              data-i18n-placeholder="placeholder"
               spellcheck="false"
               autocomplete="off"
               autocorrect="off"
@@ -130,13 +131,13 @@
         <!-- Output panel -->
         <section class="panel panel--output" id="output-panel" role="tabpanel" aria-labelledby="tab-output">
           <div class="panel-header">
-            <h2 class="panel-title">Output</h2>
+            <h2 class="panel-title" data-i18n="panelOutput">Output</h2>
             <div class="panel-header-actions">
               <button id="treeToggleBtn" class="btn-small" aria-label="Toggle tree view" title="Tree view" disabled>
-                🌲 Tree
+                <span data-i18n="treeBtn">🌲 Tree</span>
               </button>
               <button id="copyBtn" class="btn-small" aria-label="Copy formatted JSON" title="Copy to clipboard" disabled>
-                <span class="copy-icon" aria-hidden="true">📋</span> Copy
+                <span data-i18n="copyBtn"><span class="copy-icon" aria-hidden="true">📋</span> Copy</span>
               </button>
             </div>
           </div>
@@ -145,46 +146,35 @@
         </section>
       </div>
 
-      <!-- Sidebar ad (desktop only) -->
-      <aside id="adsterra-sidebar" class="ad-sidebar" aria-hidden="true">
-        <script>
-          atOptions = {
-            'key' : '4c9b39252efa213d92709868d964ee56',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-          };
-        </script>
-        <script src="https://www.highperformanceformat.com/4c9b39252efa213d92709868d964ee56/invoke.js"></script>
-      </aside>
+      <!-- Sidebar ad (desktop only, lazy-loaded) -->
+      <aside id="adsterra-sidebar" class="ad-sidebar" aria-hidden="true"></aside>
     </div>
 
     <!-- Action bar -->
     <div class="action-bar" role="toolbar" aria-label="JSON actions">
       <button id="formatBtn" class="btn btn--primary" aria-label="Format JSON (Ctrl+Shift+F)">
-        Format <kbd>Ctrl+Shift+F</kbd>
+        <span data-i18n="format">Format</span> <kbd>Ctrl+Shift+F</kbd>
       </button>
-      <button id="validateBtn" class="btn btn--secondary" aria-label="Validate JSON">
-        Validate
+      <button id="validateBtn" class="btn btn--secondary" data-i18n-aria="validate">
+        <span data-i18n="validate">Validate</span>
       </button>
-      <button id="minifyBtn" class="btn btn--secondary" aria-label="Minify JSON">
-        Minify
+      <button id="minifyBtn" class="btn btn--secondary" data-i18n-aria="minify">
+        <span data-i18n="minify">Minify</span>
       </button>
-      <button id="escapeBtn" class="btn btn--secondary" aria-label="Escape JSON to string">
-        Escape
+      <button id="escapeBtn" class="btn btn--secondary" data-i18n-aria="escape">
+        <span data-i18n="escape">Escape</span>
       </button>
-      <button id="unescapeBtn" class="btn btn--secondary" aria-label="Unescape string to JSON">
-        Unescape
+      <button id="unescapeBtn" class="btn btn--secondary" data-i18n-aria="unescape">
+        <span data-i18n="unescape">Unescape</span>
       </button>
-      <button id="downloadBtn" class="btn btn--secondary" aria-label="Download JSON file" disabled>
-        Download
+      <button id="downloadBtn" class="btn btn--secondary" data-i18n-aria="download" disabled>
+        <span data-i18n="download">Download</span>
       </button>
-      <button id="shareBtn" class="btn btn--secondary" aria-label="Share JSON via URL" disabled>
-        Share
+      <button id="shareBtn" class="btn btn--secondary" data-i18n-aria="share" disabled>
+        <span data-i18n="share">Share</span>
       </button>
-      <button id="clearBtn" class="btn btn--ghost" aria-label="Clear input">
-        Clear
+      <button id="clearBtn" class="btn btn--ghost" data-i18n-aria="clear">
+        <span data-i18n="clear">Clear</span>
       </button>
       <button id="shortcutsBtn" class="btn btn--ghost" aria-label="Show keyboard shortcuts" title="Keyboard shortcuts">
         ⌨️
@@ -193,7 +183,7 @@
 
     <!-- JSON Path display -->
     <div id="jsonPathDisplay" class="json-path-display" aria-live="polite" style="display:none">
-      <span class="json-path-label">Path:</span>
+      <span class="json-path-label" data-i18n="pathLabel">Path:</span>
       <code id="jsonPathValue" class="json-path-value"></code>
       <button id="jsonPathCopy" class="btn-small" aria-label="Copy JSON path" title="Copy path">📋</button>
     </div>
@@ -203,25 +193,25 @@
 
     <!-- SEO content -->
     <section class="seo-content" aria-labelledby="about-heading">
-      <h2 id="about-heading">About CleanJSON</h2>
-      <p>CleanJSON is a free, browser-based JSON formatter and validator. It formats messy JSON into readable, indented output and highlights syntax errors with precise line numbers. Works entirely in your browser — your data never leaves your machine.</p>
-      <h3>How to use</h3>
+      <h2 id="about-heading" data-i18n="aboutTitle">About CleanJSON</h2>
+      <p data-i18n="aboutText">CleanJSON is a free, browser-based JSON formatter and validator. It formats messy JSON into readable, indented output and highlights syntax errors with precise line numbers. Works entirely in your browser — your data never leaves your machine.</p>
+      <h3 data-i18n="howToUseTitle">How to use</h3>
       <ol>
-        <li>Paste your JSON into the <strong>Input</strong> panel on the left.</li>
-        <li>Click <strong>Format</strong> (or press <kbd>Ctrl+Shift+F</kbd>) to beautify it.</li>
-        <li>If the JSON is invalid, an error message will appear with the line number.</li>
-        <li>Use <strong>Copy</strong> to copy the formatted output to your clipboard.</li>
+        <li data-i18n="howStep1">Paste your JSON into the <strong>Input</strong> panel on the left.</li>
+        <li data-i18n="howStep2">Click <strong>Format</strong> (or press <kbd>Ctrl+Shift+F</kbd>) to beautify it.</li>
+        <li data-i18n="howStep3">If the JSON is invalid, an error message will appear with the line number.</li>
+        <li data-i18n="howStep4">Use <strong>Copy</strong> to copy the formatted output to your clipboard.</li>
       </ol>
-      <h3>Features</h3>
+      <h3 data-i18n="featuresTitle">Features</h3>
       <ul>
-        <li><strong>Format &amp; Validate</strong> — beautify JSON with syntax highlighting and line-level error reporting.</li>
-        <li><strong>Minify</strong> — compress JSON by removing all whitespace.</li>
-        <li><strong>Escape / Unescape</strong> — convert JSON to and from escaped strings.</li>
-        <li><strong>Tree View</strong> — explore JSON as a collapsible tree with JSON path finder.</li>
-        <li><strong>Share</strong> — generate a shareable URL with your JSON encoded in the link.</li>
-        <li><strong>Download</strong> — save formatted JSON as a <code>.json</code> file.</li>
-        <li><strong>Dark Mode</strong> — gentle dark theme that respects your system preference.</li>
-        <li><strong>Keyboard Shortcuts</strong> — press <kbd>?</kbd> to see all available shortcuts.</li>
+        <li data-i18n="feat1"><strong>Format &amp; Validate</strong> — beautify JSON with syntax highlighting and line-level error reporting.</li>
+        <li data-i18n="feat2"><strong>Minify</strong> — compress JSON by removing all whitespace.</li>
+        <li data-i18n="feat3"><strong>Escape / Unescape</strong> — convert JSON to and from escaped strings.</li>
+        <li data-i18n="feat4"><strong>Tree View</strong> — explore JSON as a collapsible tree with JSON path finder.</li>
+        <li data-i18n="feat5"><strong>Share</strong> — generate a shareable URL with your JSON encoded in the link.</li>
+        <li data-i18n="feat6"><strong>Download</strong> — save formatted JSON as a <code>.json</code> file.</li>
+        <li data-i18n="feat7"><strong>Dark Mode</strong> — gentle dark theme that respects your system preference.</li>
+        <li data-i18n="feat8"><strong>Keyboard Shortcuts</strong> — press <kbd>?</kbd> to see all available shortcuts.</li>
       </ul>
     </section>
   </main>
@@ -230,13 +220,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-left">
-        <p class="footer-copy">&copy; 2025 CleanJSON. All rights reserved.</p>
-        <p class="footer-tagline">Free JSON tools for developers.</p>
+        <p class="footer-copy" data-i18n="copyright">&copy; 2026 CleanJSON. All rights reserved.</p>
+        <p class="footer-tagline" data-i18n="tagline">Free JSON tools for developers.</p>
         <nav class="footer-links" aria-label="Footer navigation">
-          <a href="/about.html">About Us</a>
-          <a href="/how-to-use.html">How to Use & FAQ</a>
-          <a href="/privacy.html">Privacy Policy</a>
-          <a href="/terms.html">Terms of Service</a>
+          <a href="/about.html" data-i18n="aboutUs">About Us</a>
+          <a href="/how-to-use.html" data-i18n="howToUsePage">How to Use & FAQ</a>
+          <a href="/privacy.html" data-i18n="privacy">Privacy Policy</a>
+          <a href="/terms.html" data-i18n="terms">Terms of Service</a>
         </nav>
       </div>
       <div class="footer-right" id="visitorCounter" aria-label="Site visitor count">
@@ -248,38 +238,27 @@
     </div>
   </footer>
 
-  <!-- ===== AD: BOTTOM STICKY (mobile) ===== -->
-  <div id="adsterra-banner-bottom" class="ad-banner ad-banner--bottom" aria-hidden="true">
-    <script>
-      atOptions = {
-        'key' : 'b763f04cb9e9760fd6d1712c5965f77a',
-        'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
-        'params' : {}
-      };
-    </script>
-    <script src="https://www.highperformanceformat.com/b763f04cb9e9760fd6d1712c5965f77a/invoke.js"></script>
-  </div>
+  <!-- ===== AD: BOTTOM STICKY (mobile, lazy-loaded) ===== -->
+  <div id="adsterra-banner-bottom" class="ad-banner ad-banner--bottom" aria-hidden="true"></div>
 
   <!-- Keyboard shortcuts modal -->
   <div id="shortcutsModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title" style="display:none">
     <div class="modal-content" role="document">
       <div class="modal-header">
-        <h2 id="shortcuts-title">Keyboard Shortcuts</h2>
+        <h2 id="shortcuts-title" data-i18n="shortcutsTitle">Keyboard Shortcuts</h2>
         <button id="shortcutsClose" class="btn-icon" aria-label="Close shortcuts panel">&times;</button>
       </div>
       <div class="modal-body">
         <dl class="shortcuts-list">
-          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></dt><dd>Format JSON</dd></div>
-          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></dt><dd>Validate JSON</dd></div>
-          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></dt><dd>Minify JSON</dd></div>
-          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></dt><dd>Copy output</dd></div>
-          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></dt><dd>Clear all</dd></div>
-          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></dt><dd>Share URL</dd></div>
-          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></dt><dd>Download JSON</dd></div>
-          <div class="shortcut-item"><dt><kbd>Escape</kbd></dt><dd>Close this panel</dd></div>
-          <div class="shortcut-item"><dt><kbd>?</kbd></dt><dd>Open shortcuts (when not typing)</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></dt><dd data-i18n="scFormat">Format JSON</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></dt><dd data-i18n="scValidate">Validate JSON</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></dt><dd data-i18n="scMinify">Minify JSON</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></dt><dd data-i18n="scCopy">Copy output</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></dt><dd data-i18n="scClear">Clear all</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></dt><dd data-i18n="scShare">Share URL</dd></div>
+          <div class="shortcut-item"><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></dt><dd data-i18n="scDownload">Download JSON</dd></div>
+          <div class="shortcut-item"><dt><kbd>Escape</kbd></dt><dd data-i18n="scClosePanel">Close this panel</dd></div>
+          <div class="shortcut-item"><dt><kbd>?</kbd></dt><dd data-i18n="scOpenShortcuts">Open shortcuts (when not typing)</dd></div>
         </dl>
       </div>
     </div>
@@ -291,6 +270,30 @@
     </div>
   </noscript>
 
+  <script src="i18n.js"></script>
   <script src="app.js"></script>
+
+  <!-- Lazy-load ad scripts after page is interactive -->
+  <script>
+    function loadAd(containerId, key, width, height) {
+      var el = document.getElementById(containerId);
+      if (!el) return;
+      var observer = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+          observer.disconnect();
+          window.atOptions = { key: key, format: 'iframe', height: height, width: width, params: {} };
+          var s = document.createElement('script');
+          s.src = 'https://www.highperformanceformat.com/' + key + '/invoke.js';
+          el.appendChild(s);
+        }
+      }, { rootMargin: '200px' });
+      observer.observe(el);
+    }
+    if ('IntersectionObserver' in window) {
+      loadAd('adsterra-banner-top', '1a1134d4c49c2d586013de7c620cbc33', 728, 90);
+      loadAd('adsterra-sidebar', '4c9b39252efa213d92709868d964ee56', 300, 250);
+      loadAd('adsterra-banner-bottom', 'b763f04cb9e9760fd6d1712c5965f77a', 320, 50);
+    }
+  </script>
 </body>
 </html>

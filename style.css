@@ -643,8 +643,8 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 }
 .seo-content h2 { margin-bottom: 0.6rem; }
 .seo-content h3 { margin: 1rem 0 0.4rem; }
-.seo-content p, .seo-content ol { color: var(--text-secondary); font-size: 0.9rem; }
-.seo-content ol { padding-left: 1.4rem; }
+.seo-content p, .seo-content ol, .seo-content ul { color: var(--text-secondary); font-size: 0.9rem; }
+.seo-content ol, .seo-content ul { padding-left: 1.4rem; }
 .seo-content li { margin-bottom: 0.3rem; }
 .seo-content strong { color: var(--text-primary); }
 .seo-content kbd {
@@ -695,6 +695,9 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 }
 .visitor-icon { font-size: 0.9rem; }
 .visitor-sep { opacity: 0.4; }
+
+/* ---- Upload label ---- */
+.upload-label { cursor: pointer; }
 
 /* ---- Drag-over highlight ---- */
 .json-textarea.drag-over {
@@ -794,4 +797,17 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 @media (max-width: 400px) {
   .action-bar { gap: 4px; }
   .btn { padding: 7px 10px; font-size: 0.82rem; }
+}
+
+/* Print: hide ads and non-essential UI */
+@media print {
+  .ad-banner, .ad-sidebar, .site-header nav, .tab-bar,
+  .action-bar, .footer-right, .modal-overlay { display: none !important; }
+  body { background: #fff; color: #000; }
+  .panel { border: 1px solid #ccc; }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

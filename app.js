@@ -193,15 +193,15 @@ function formatJSON() {
     clearErrorState();
     lastValidJSON = formatted;
     lastParsed = result.parsed;
-    showStatus('success', 'Valid JSON', 'Formatted successfully.');
+    showStatus('success', I18N.t('validJson'), I18N.t('formattedOk'));
     enableOutputButtons();
     sendWebhook({ inputLength: text.length, isValid: true, errorType: '' });
   } else {
     clearOutput();
     clearErrorState();
     highlightErrorLine(result.line);
-    const loc = result.line ? `Line ${result.line}${result.col ? `, col ${result.col}` : ''}` : '';
-    showStatus('error', `Invalid JSON${loc ? ' — ' + loc : ''}`, result.error);
+    const loc = result.line ? `${I18N.t('line')} ${result.line}${result.col ? `, ${I18N.t('col')} ${result.col}` : ''}` : '';
+    showStatus('error', `${I18N.t('invalidJson')}${loc ? ' — ' + loc : ''}`, result.error);
     disableOutputButtons();
     sendWebhook({ inputLength: text.length, isValid: false, errorType: result.error });
   }
@@ -220,12 +220,12 @@ function validateJSON() {
     clearErrorState();
     lastValidJSON = JSON.stringify(result.parsed, null, INDENT);
     lastParsed = result.parsed;
-    showStatus('success', 'Valid JSON', 'No errors found.');
+    showStatus('success', I18N.t('validJson'), I18N.t('noErrors'));
     sendWebhook({ inputLength: text.length, isValid: true, errorType: '' });
   } else {
     highlightErrorLine(result.line);
-    const loc = result.line ? `Line ${result.line}${result.col ? `, col ${result.col}` : ''}` : '';
-    showStatus('error', `Invalid JSON${loc ? ' — ' + loc : ''}`, result.error);
+    const loc = result.line ? `${I18N.t('line')} ${result.line}${result.col ? `, ${I18N.t('col')} ${result.col}` : ''}` : '';
+    showStatus('error', `${I18N.t('invalidJson')}${loc ? ' — ' + loc : ''}`, result.error);
     sendWebhook({ inputLength: text.length, isValid: false, errorType: result.error });
   }
 }
@@ -244,11 +244,11 @@ function minifyJSON() {
     clearErrorState();
     lastValidJSON = minified;
     lastParsed = result.parsed;
-    showStatus('info', 'Minified', `${minified.length} characters`);
+    showStatus('info', I18N.t('minified'), `${minified.length} ${I18N.t('characters')}`);
     enableOutputButtons();
   } else {
-    const loc = result.line ? `Line ${result.line}` : '';
-    showStatus('error', `Cannot minify — Invalid JSON${loc ? ' (' + loc + ')' : ''}`, result.error);
+    const loc = result.line ? `${I18N.t('line')} ${result.line}` : '';
+    showStatus('error', `${I18N.t('cannotMinify')}${loc ? ' (' + loc + ')' : ''}`, result.error);
   }
 }
 
@@ -260,7 +260,7 @@ function escapeJSON() {
   if (!text) return;
   const escaped = JSON.stringify(text);
   setOutput(escaped);
-  showStatus('info', 'Escaped', 'JSON string escaped.');
+  showStatus('info', I18N.t('escaped'), I18N.t('jsonEscaped'));
   copyBtn.disabled = false;
 }
 
@@ -277,7 +277,7 @@ function unescapeJSON() {
       setOutput(formatted);
       lastValidJSON = formatted;
       lastParsed = unescaped;
-      showStatus('success', 'Parsed JSON', 'Input was valid JSON, formatted it.');
+      showStatus('success', I18N.t('parsedJson'), I18N.t('inputWasValid'));
       enableOutputButtons();
     } else {
       // It was a JSON string — put unescaped value back in input
@@ -292,16 +292,16 @@ function unescapeJSON() {
         setOutput(formatted);
         lastValidJSON = formatted;
         lastParsed = inner.parsed;
-        showStatus('success', 'Unescaped & formatted', 'String unescaped and JSON formatted.');
+        showStatus('success', I18N.t('unescapedFormatted'), I18N.t('strUnescapedFormatted'));
         enableOutputButtons();
       } else {
         setOutput(unescaped);
-        showStatus('info', 'Unescaped', 'String unescaped (not valid JSON).');
+        showStatus('info', I18N.t('unescaped'), I18N.t('stringUnescaped'));
         copyBtn.disabled = false;
       }
     }
   } catch (_) {
-    showStatus('error', 'Cannot unescape', 'Input is not a valid escaped string.');
+    showStatus('error', I18N.t('cannotUnescape'), I18N.t('notValidEscaped'));
   }
 }
 
@@ -315,11 +315,11 @@ function toggleTreeView() {
     treeView.appendChild(buildTreeNode(lastParsed, ''));
     treeView.style.display = 'block';
     jsonOutput.style.display = 'none';
-    treeToggleBtn.innerHTML = '📄 Code';
+    treeToggleBtn.innerHTML = I18N.t('codeBtn');
   } else {
     treeView.style.display = 'none';
     jsonOutput.style.display = 'block';
-    treeToggleBtn.innerHTML = '🌲 Tree';
+    treeToggleBtn.innerHTML = I18N.t('treeBtn');
     treeViewActive = false;
   }
 }
@@ -375,7 +375,7 @@ function buildTreeNode(data, path) {
 
   const count = document.createElement('span');
   count.className = 'tree-count';
-  count.textContent = ` ${entries.length} ${isArray ? 'items' : 'keys'}`;
+  count.textContent = ` ${entries.length} ${isArray ? I18N.t('items') : I18N.t('keys')}`;
 
   container.appendChild(toggle);
   container.appendChild(openBracket);
@@ -455,12 +455,12 @@ function shareJSON() {
     const encoded = btoa(unescape(encodeURIComponent(text)));
     const url = window.location.origin + window.location.pathname + '#json=' + encoded;
     navigator.clipboard.writeText(url).then(() => {
-      showStatus('success', 'Share URL copied!', 'Paste it anywhere to share your JSON.');
+      showStatus('success', I18N.t('shareUrlCopied'), I18N.t('pasteAnywhere'));
     }).catch(() => {
-      showStatus('info', 'Share URL', url);
+      showStatus('info', I18N.t('shareUrl'), url);
     });
   } catch (_) {
-    showStatus('error', 'Share failed', 'Could not encode JSON for sharing.');
+    showStatus('error', I18N.t('shareFailed'), I18N.t('couldNotEncode'));
   }
 }
 
@@ -493,7 +493,7 @@ function downloadJSON() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  showStatus('success', 'Downloaded', 'formatted.json saved.');
+  showStatus('success', I18N.t('downloaded'), I18N.t('fileSaved'));
 }
 
 // ============================================================
@@ -540,7 +540,7 @@ copyBtn.addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(text);
     const orig = copyBtn.innerHTML;
-    copyBtn.innerHTML = '<span aria-hidden="true">✅</span> Copied!';
+    copyBtn.innerHTML = I18N.t('copied');
     copyBtn.disabled = true;
     setTimeout(() => { copyBtn.innerHTML = orig; copyBtn.disabled = false; }, 1800);
   } catch (_) {
@@ -552,7 +552,7 @@ copyBtn.addEventListener('click', async () => {
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    showStatus('success', 'Copied to clipboard!');
+    showStatus('success', I18N.t('copiedClipboard'));
   }
 });
 
@@ -639,6 +639,23 @@ jsonInput.addEventListener('paste', () => {
 });
 
 // ============================================================
+// File upload
+// ============================================================
+const fileUpload = document.getElementById('fileUpload');
+fileUpload.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    jsonInput.value = ev.target.result;
+    updateLineNumbers();
+    formatJSON();
+  };
+  reader.readAsText(file);
+  fileUpload.value = '';
+});
+
+// ============================================================
 // Drag and drop
 // ============================================================
 jsonInput.addEventListener('dragover', (e) => {
@@ -702,14 +719,14 @@ minifyBtn.addEventListener('click', maybeShowOutput);
   try {
     const today = new Date().toISOString().slice(0, 10);
     const data  = JSON.parse(localStorage.getItem('cleanjson-visitors') || '{}');
-    const total = (data.total || 0) + (data.lastVisit === today ? 0 : 1);
-    const todayCount = data.lastVisit === today ? (data.todayCount || 1) : 1;
+    const total = (data.total || 0) + 1;
+    const todayCount = data.lastVisit === today ? (data.todayCount || 0) + 1 : 1;
 
     const newData = { total, lastVisit: today, todayCount };
     localStorage.setItem('cleanjson-visitors', JSON.stringify(newData));
 
-    document.getElementById('visitorToday').textContent = `Today: ${todayCount.toLocaleString()}`;
-    document.getElementById('visitorTotal').textContent  = `Total: ${total.toLocaleString()}`;
+    document.getElementById('visitorToday').textContent = `${I18N.t('today')}: ${todayCount.toLocaleString()}`;
+    document.getElementById('visitorTotal').textContent  = `${I18N.t('total')}: ${total.toLocaleString()}`;
   } catch (_) {
     const counter = document.getElementById('visitorCounter');
     if (counter) counter.style.display = 'none';
