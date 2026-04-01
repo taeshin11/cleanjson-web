@@ -103,7 +103,7 @@ const I18N = {
       feat8: '<strong>Keyboard Shortcuts</strong> — press <kbd>?</kbd> to see all available shortcuts.',
 
       // Footer
-      copyright: '© 2026 CleanJSON. All rights reserved.',
+      copyright: '© 2025 CleanJSON Web. All rights reserved.',
       tagline: 'Free JSON tools for developers.',
       aboutUs: 'About Us',
       howToUsePage: 'How to Use & FAQ',
@@ -127,6 +127,9 @@ const I18N = {
       // Feedback
       feedbackBtn: 'Feedback',
       feedbackLabel: 'Send feedback or suggestions',
+
+      // Social
+      shareThisTool: 'Share this tool:',
 
       // Noscript
       noscript: '<strong>JavaScript is required</strong> to use CleanJSON. Please enable JavaScript in your browser.',
@@ -206,7 +209,7 @@ const I18N = {
       feat6: '<strong>다운로드</strong> — 포맷된 JSON을 <code>.json</code> 파일로 저장합니다.',
       feat7: '<strong>다크 모드</strong> — 시스템 설정을 따르는 부드러운 다크 테마.',
       feat8: '<strong>키보드 단축키</strong> — <kbd>?</kbd>를 눌러 모든 단축키를 확인하세요.',
-      copyright: '© 2026 CleanJSON. All rights reserved.',
+      copyright: '© 2025 CleanJSON Web. All rights reserved.',
       tagline: '개발자를 위한 무료 JSON 도구.',
       aboutUs: '소개',
       howToUsePage: '사용 방법 & FAQ',
@@ -226,6 +229,7 @@ const I18N = {
       scOpenShortcuts: '단축키 열기 (입력 중이 아닐 때)',
       feedbackBtn: '피드백',
       feedbackLabel: '피드백 또는 개선 제안 보내기',
+      shareThisTool: '이 도구 공유:',
       noscript: 'CleanJSON을 사용하려면 <strong>JavaScript가 필요합니다</strong>. 브라우저에서 JavaScript를 활성화해 주세요.',
     },
 
@@ -303,7 +307,7 @@ const I18N = {
       feat6: '<strong>ダウンロード</strong> — フォーマットしたJSONを<code>.json</code>ファイルで保存。',
       feat7: '<strong>ダークモード</strong> — システム設定に合わせた優しいダークテーマ。',
       feat8: '<strong>キーボードショートカット</strong> — <kbd>?</kbd>で全ショートカットを表示。',
-      copyright: '© 2026 CleanJSON. All rights reserved.',
+      copyright: '© 2025 CleanJSON Web. All rights reserved.',
       tagline: '開発者のための無料JSONツール。',
       aboutUs: '紹介',
       howToUsePage: '使い方 & FAQ',
@@ -323,6 +327,7 @@ const I18N = {
       scOpenShortcuts: 'ショートカットを開く（入力中以外）',
       feedbackBtn: 'フィードバック',
       feedbackLabel: 'フィードバックや提案を送る',
+      shareThisTool: 'このツールを共有:',
       noscript: 'CleanJSONを使用するには<strong>JavaScriptが必要です</strong>。ブラウザでJavaScriptを有効にしてください。',
     },
 
@@ -400,7 +405,7 @@ const I18N = {
       feat6: '<strong>下载</strong> — 将格式化的JSON保存为<code>.json</code>文件。',
       feat7: '<strong>深色模式</strong> — 跟随系统偏好的柔和深色主题。',
       feat8: '<strong>键盘快捷键</strong> — 按<kbd>?</kbd>查看所有快捷键。',
-      copyright: '© 2026 CleanJSON. 保留所有权利。',
+      copyright: '© 2025 CleanJSON Web. 保留所有权利。',
       tagline: '面向开发者的免费JSON工具。',
       aboutUs: '关于我们',
       howToUsePage: '使用方法 & FAQ',
@@ -420,6 +425,7 @@ const I18N = {
       scOpenShortcuts: '打开快捷键（非输入状态）',
       feedbackBtn: '反馈',
       feedbackLabel: '发送反馈或建议',
+      shareThisTool: '分享此工具:',
       noscript: '使用CleanJSON需要<strong>启用JavaScript</strong>。请在浏览器中启用JavaScript。',
     },
 
@@ -497,7 +503,7 @@ const I18N = {
       feat6: '<strong>Descargar</strong> — guarda el JSON formateado como archivo <code>.json</code>.',
       feat7: '<strong>Modo Oscuro</strong> — tema oscuro suave que respeta tu preferencia del sistema.',
       feat8: '<strong>Atajos de Teclado</strong> — presiona <kbd>?</kbd> para ver todos los atajos.',
-      copyright: '© 2026 CleanJSON. Todos los derechos reservados.',
+      copyright: '© 2025 CleanJSON Web. Todos los derechos reservados.',
       tagline: 'Herramientas JSON gratuitas para desarrolladores.',
       aboutUs: 'Sobre nosotros',
       howToUsePage: 'Cómo usar & FAQ',
@@ -517,6 +523,7 @@ const I18N = {
       scOpenShortcuts: 'Abrir atajos (cuando no se escribe)',
       feedbackBtn: 'Comentarios',
       feedbackLabel: 'Enviar comentarios o sugerencias',
+      shareThisTool: 'Compartir esta herramienta:',
       noscript: 'Se requiere <strong>JavaScript</strong> para usar CleanJSON. Habilítalo en tu navegador.',
     },
 
@@ -594,7 +601,7 @@ const I18N = {
       feat6: '<strong>Télécharger</strong> — sauvegarder le JSON formaté en fichier <code>.json</code>.',
       feat7: '<strong>Mode Sombre</strong> — thème sombre doux qui respecte vos préférences système.',
       feat8: '<strong>Raccourcis Clavier</strong> — appuyez sur <kbd>?</kbd> pour voir tous les raccourcis.',
-      copyright: '© 2026 CleanJSON. Tous droits réservés.',
+      copyright: '© 2025 CleanJSON Web. Tous droits réservés.',
       tagline: 'Outils JSON gratuits pour développeurs.',
       aboutUs: 'À propos',
       howToUsePage: 'Comment utiliser & FAQ',
@@ -614,6 +621,7 @@ const I18N = {
       scOpenShortcuts: "Ouvrir les raccourcis (hors saisie)",
       feedbackBtn: 'Commentaire',
       feedbackLabel: 'Envoyer un commentaire ou une suggestion',
+      shareThisTool: 'Partager cet outil :',
       noscript: '<strong>JavaScript est requis</strong> pour utiliser CleanJSON. Veuillez activer JavaScript dans votre navigateur.',
     },
 
@@ -691,7 +699,7 @@ const I18N = {
       feat6: '<strong>Herunterladen</strong> — formatiertes JSON als <code>.json</code>-Datei speichern.',
       feat7: '<strong>Dunkelmodus</strong> — sanftes dunkles Thema, das Ihre Systemeinstellung respektiert.',
       feat8: '<strong>Tastenkürzel</strong> — drücken Sie <kbd>?</kbd>, um alle Kürzel anzuzeigen.',
-      copyright: '© 2026 CleanJSON. Alle Rechte vorbehalten.',
+      copyright: '© 2025 CleanJSON Web. Alle Rechte vorbehalten.',
       tagline: 'Kostenlose JSON-Tools für Entwickler.',
       aboutUs: 'Über uns',
       howToUsePage: 'Anleitung & FAQ',
@@ -711,6 +719,7 @@ const I18N = {
       scOpenShortcuts: 'Kürzel öffnen (wenn nicht tippend)',
       feedbackBtn: 'Feedback',
       feedbackLabel: 'Feedback oder Vorschläge senden',
+      shareThisTool: 'Dieses Tool teilen:',
       noscript: '<strong>JavaScript ist erforderlich</strong>, um CleanJSON zu verwenden. Bitte aktivieren Sie JavaScript in Ihrem Browser.',
     },
 
@@ -788,7 +797,7 @@ const I18N = {
       feat6: '<strong>Baixar</strong> — salvar JSON formatado como arquivo <code>.json</code>.',
       feat7: '<strong>Modo Escuro</strong> — tema escuro suave que respeita sua preferência do sistema.',
       feat8: '<strong>Atalhos de Teclado</strong> — pressione <kbd>?</kbd> para ver todos os atalhos.',
-      copyright: '© 2026 CleanJSON. Todos os direitos reservados.',
+      copyright: '© 2025 CleanJSON Web. Todos os direitos reservados.',
       tagline: 'Ferramentas JSON gratuitas para desenvolvedores.',
       aboutUs: 'Sobre nós',
       howToUsePage: 'Como usar & FAQ',
@@ -808,6 +817,7 @@ const I18N = {
       scOpenShortcuts: 'Abrir atalhos (quando não estiver digitando)',
       feedbackBtn: 'Feedback',
       feedbackLabel: 'Enviar feedback ou sugestões',
+      shareThisTool: 'Compartilhar esta ferramenta:',
       noscript: '<strong>JavaScript é necessário</strong> para usar o CleanJSON. Ative o JavaScript no seu navegador.',
     },
 
@@ -885,7 +895,7 @@ const I18N = {
       feat6: '<strong>Скачать</strong> — сохранение JSON как <code>.json</code> файл.',
       feat7: '<strong>Тёмная тема</strong> — следует настройкам системы.',
       feat8: '<strong>Горячие клавиши</strong> — нажмите <kbd>?</kbd> для списка.',
-      copyright: '© 2026 CleanJSON. Все права защищены.',
+      copyright: '© 2025 CleanJSON Web. Все права защищены.',
       tagline: 'Бесплатные JSON-инструменты для разработчиков.',
       aboutUs: 'О нас',
       howToUsePage: 'Инструкция и FAQ',
@@ -905,6 +915,7 @@ const I18N = {
       scOpenShortcuts: 'Открыть горячие клавиши',
       feedbackBtn: 'Отзыв',
       feedbackLabel: 'Отправить отзыв или предложение',
+      shareThisTool: 'Поделиться инструментом:',
       noscript: 'Для использования CleanJSON требуется <strong>JavaScript</strong>. Включите его в браузере.',
     },
 
@@ -982,7 +993,7 @@ const I18N = {
       feat6: '<strong>डाउनलोड</strong> — JSON को <code>.json</code> फ़ाइल के रूप में सेव करें।',
       feat7: '<strong>डार्क मोड</strong> — सिस्टम प्राथमिकता का सम्मान करता है।',
       feat8: '<strong>कीबोर्ड शॉर्टकट</strong> — <kbd>?</kbd> दबाकर देखें।',
-      copyright: '© 2026 CleanJSON. सर्वाधिकार सुरक्षित।',
+      copyright: '© 2025 CleanJSON Web. सर्वाधिकार सुरक्षित।',
       tagline: 'डेवलपर्स के लिए मुफ़्त JSON टूल।',
       aboutUs: 'हमारे बारे में',
       howToUsePage: 'उपयोग कैसे करें & FAQ',
@@ -1002,6 +1013,7 @@ const I18N = {
       scOpenShortcuts: 'शॉर्टकट खोलें',
       feedbackBtn: 'फ़ीडबैक',
       feedbackLabel: 'फ़ीडबैक या सुझाव भेजें',
+      shareThisTool: 'इस टूल को साझा करें:',
       noscript: 'CleanJSON के लिए <strong>JavaScript आवश्यक है</strong>। कृपया अपने ब्राउज़र में JavaScript सक्षम करें।',
     },
 
@@ -1079,7 +1091,7 @@ const I18N = {
       feat6: '<strong>Scarica</strong> — salva JSON formattato come file <code>.json</code>.',
       feat7: '<strong>Modalità Scura</strong> — tema scuro che rispetta le preferenze di sistema.',
       feat8: '<strong>Scorciatoie</strong> — premi <kbd>?</kbd> per vederle tutte.',
-      copyright: '© 2026 CleanJSON. Tutti i diritti riservati.',
+      copyright: '© 2025 CleanJSON Web. Tutti i diritti riservati.',
       tagline: 'Strumenti JSON gratuiti per sviluppatori.',
       aboutUs: 'Chi siamo',
       howToUsePage: 'Come usare & FAQ',
@@ -1099,6 +1111,7 @@ const I18N = {
       scOpenShortcuts: 'Apri scorciatoie',
       feedbackBtn: 'Feedback',
       feedbackLabel: 'Invia feedback o suggerimenti',
+      shareThisTool: 'Condividi questo strumento:',
       noscript: '<strong>JavaScript è necessario</strong> per usare CleanJSON. Abilitalo nel tuo browser.',
     },
 
@@ -1176,7 +1189,7 @@ const I18N = {
       feat6: '<strong>Tải xuống</strong> — lưu JSON đã định dạng dưới dạng <code>.json</code>.',
       feat7: '<strong>Chế độ tối</strong> — theo cài đặt hệ thống.',
       feat8: '<strong>Phím tắt</strong> — nhấn <kbd>?</kbd> để xem tất cả.',
-      copyright: '© 2026 CleanJSON. Mọi quyền được bảo lưu.',
+      copyright: '© 2025 CleanJSON Web. Mọi quyền được bảo lưu.',
       tagline: 'Công cụ JSON miễn phí cho lập trình viên.',
       aboutUs: 'Về chúng tôi',
       howToUsePage: 'Hướng dẫn & FAQ',
@@ -1196,6 +1209,7 @@ const I18N = {
       scOpenShortcuts: 'Mở phím tắt',
       feedbackBtn: 'Phản hồi',
       feedbackLabel: 'Gửi phản hồi hoặc đề xuất',
+      shareThisTool: 'Chia sẻ công cụ này:',
       noscript: '<strong>Cần JavaScript</strong> để sử dụng CleanJSON. Vui lòng bật JavaScript.',
     },
 
@@ -1273,7 +1287,7 @@ const I18N = {
       feat6: '<strong>Unduh</strong> — simpan JSON yang diformat sebagai file <code>.json</code>.',
       feat7: '<strong>Mode Gelap</strong> — tema gelap yang mengikuti preferensi sistem.',
       feat8: '<strong>Pintasan Keyboard</strong> — tekan <kbd>?</kbd> untuk melihat semua.',
-      copyright: '© 2026 CleanJSON. Semua hak dilindungi.',
+      copyright: '© 2025 CleanJSON Web. Semua hak dilindungi.',
       tagline: 'Alat JSON gratis untuk developer.',
       aboutUs: 'Tentang kami',
       howToUsePage: 'Cara pakai & FAQ',
@@ -1293,6 +1307,7 @@ const I18N = {
       scOpenShortcuts: 'Buka pintasan',
       feedbackBtn: 'Masukan',
       feedbackLabel: 'Kirim masukan atau saran',
+      shareThisTool: 'Bagikan alat ini:',
       noscript: '<strong>JavaScript diperlukan</strong> untuk menggunakan CleanJSON. Aktifkan JavaScript di browser Anda.',
     },
   },

@@ -23,26 +23,82 @@
   </url>
   <url>
     <loc>https://cleanjson-web.vercel.app/about.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://cleanjson-web.vercel.app/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cleanjson-web.vercel.app/about.html" />
   </url>
   <url>
     <loc>https://cleanjson-web.vercel.app/how-to-use.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://cleanjson-web.vercel.app/how-to-use.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cleanjson-web.vercel.app/how-to-use.html" />
   </url>
   <url>
     <loc>https://cleanjson-web.vercel.app/privacy.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://cleanjson-web.vercel.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cleanjson-web.vercel.app/privacy.html" />
   </url>
   <url>
     <loc>https://cleanjson-web.vercel.app/terms.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://cleanjson-web.vercel.app/terms.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cleanjson-web.vercel.app/terms.html" />
   </url>
 </urlset>
